@@ -1,14 +1,27 @@
 import type * as types from './types'
 
-export function parseYetfRecordString(recordString: string): types.YetfRecord {
+interface ParsedRollNumber {
+  county: string
+  municipality: string
+  mapArea: string
+  mapDivision: string
+  mapSubdivision: string
+  parcel: string
+  parcelSub: string
+  primarySubordinate: string
+}
+
+export function parseYetfRecordString(
+  recordString: string
+): types.RawYetfRecord {
   const rollNumber = recordString.slice(0, 18)
   const recordType = recordString.slice(19, 21)
 
-  let record: types.YetfRecord
+  let record: types.RawYetfRecord
 
   switch (recordType) {
     case 'AA': {
-      const recordAA: types.YetfRecordAA = {
+      const recordAA: types.RawYetfRecordAA = {
         rollNumber,
         recordType,
         ward: recordString.slice(21, 23).trim(),
@@ -29,7 +42,7 @@ export function parseYetfRecordString(recordString: string): types.YetfRecord {
       break
     }
     case 'BB': {
-      const recordBB: types.YetfRecordBB = {
+      const recordBB: types.RawYetfRecordBB = {
         rollNumber,
         recordType,
         frontage:
@@ -56,7 +69,7 @@ export function parseYetfRecordString(recordString: string): types.YetfRecord {
       break
     }
     case 'CC': {
-      const recordCC: types.YetfRecordCC = {
+      const recordCC: types.RawYetfRecordCC = {
         rollNumber,
         recordType,
         sequenceNumber: recordString.slice(21, 22).trim(),
@@ -70,7 +83,7 @@ export function parseYetfRecordString(recordString: string): types.YetfRecord {
         condition: recordString.slice(36, 37).trim(),
         fullStoreys: recordString.slice(37, 39).trim(),
         partStoreys: recordString.slice(39, 40).trim(),
-        heightEffectiveYear: recordString.slice(40, 44).trim(),
+        heightEffectiveYearBuilt: recordString.slice(40, 44).trim(),
         split: recordString.slice(44, 45).trim(),
         grossArea: recordString.slice(45, 51).trim(),
         totalBasementArea: recordString.slice(51, 55).trim(),
@@ -91,7 +104,7 @@ export function parseYetfRecordString(recordString: string): types.YetfRecord {
       break
     }
     case 'DD': {
-      const recordDD: types.YetfRecordDD = {
+      const recordDD: types.RawYetfRecordDD = {
         rollNumber,
         recordType,
         sequenceNumber: recordString.slice(21, 22).trim(),
@@ -118,7 +131,7 @@ export function parseYetfRecordString(recordString: string): types.YetfRecord {
       break
     }
     case 'GG': {
-      const recordGG: types.YetfRecordGG = {
+      const recordGG: types.RawYetfRecordGG = {
         rollNumber,
         recordType,
         // filler 21, 22
@@ -141,7 +154,7 @@ export function parseYetfRecordString(recordString: string): types.YetfRecord {
       break
     }
     case 'HH': {
-      const recordHH: types.YetfRecordHH = {
+      const recordHH: types.RawYetfRecordHH = {
         rollNumber,
         recordType,
         sequenceNumber: recordString.slice(21, 22).trim(),
@@ -152,7 +165,7 @@ export function parseYetfRecordString(recordString: string): types.YetfRecord {
       break
     }
     case 'JJ': {
-      const recordJJ: types.YetfRecordJJ = {
+      const recordJJ: types.RawYetfRecordJJ = {
         rollNumber,
         recordType,
         cityProvinceCountry: recordString.slice(21, 42).trim(),
@@ -163,7 +176,7 @@ export function parseYetfRecordString(recordString: string): types.YetfRecord {
       break
     }
     case 'KK': {
-      const recordKK: types.YetfRecordKK = {
+      const recordKK: types.RawYetfRecordKK = {
         rollNumber,
         recordType,
         streetNumber: recordString.slice(21, 26).trim(),
@@ -177,7 +190,7 @@ export function parseYetfRecordString(recordString: string): types.YetfRecord {
       break
     }
     case 'LL': {
-      const recordLL: types.YetfRecordLL = {
+      const recordLL: types.RawYetfRecordLL = {
         rollNumber,
         recordType,
         sequenceNumber: recordString.slice(21, 22).trim(),
@@ -188,7 +201,7 @@ export function parseYetfRecordString(recordString: string): types.YetfRecord {
       break
     }
     case 'MM': {
-      const recordMM: types.YetfRecordMM = {
+      const recordMM: types.RawYetfRecordMM = {
         rollNumber,
         recordType,
         sequenceNumber: recordString.slice(21, 22).trim(),
@@ -199,7 +212,7 @@ export function parseYetfRecordString(recordString: string): types.YetfRecord {
       break
     }
     case 'PA': {
-      const recordPA: types.YetfRecordPA = {
+      const recordPA: types.RawYetfRecordPA = {
         rollNumber,
         recordType,
         sequenceNumber: recordString.slice(21, 22).trim(),
@@ -224,7 +237,7 @@ export function parseYetfRecordString(recordString: string): types.YetfRecord {
       break
     }
     case 'PB': {
-      const recordPB: types.YetfRecordPB = {
+      const recordPB: types.RawYetfRecordPB = {
         rollNumber,
         recordType,
         sequenceNumber: recordString.slice(21, 22).trim(),
@@ -237,7 +250,7 @@ export function parseYetfRecordString(recordString: string): types.YetfRecord {
       break
     }
     case 'PC': {
-      const recordPC: types.YetfRecordPC = {
+      const recordPC: types.RawYetfRecordPC = {
         rollNumber,
         recordType,
         sequenceNumber: recordString.slice(21, 22).trim(),
@@ -249,7 +262,7 @@ export function parseYetfRecordString(recordString: string): types.YetfRecord {
       break
     }
     case 'PD': {
-      const recordPD: types.YetfRecordPD = {
+      const recordPD: types.RawYetfRecordPD = {
         rollNumber,
         recordType,
         sequenceNumber: recordString.slice(21, 22).trim(),
@@ -260,7 +273,7 @@ export function parseYetfRecordString(recordString: string): types.YetfRecord {
       break
     }
     case 'PI': {
-      const recordPI: types.YetfRecordPI = {
+      const recordPI: types.RawYetfRecordPI = {
         rollNumber,
         recordType,
         phaseInStartingPoint: recordString.slice(21, 31).trim(),
@@ -273,12 +286,24 @@ export function parseYetfRecordString(recordString: string): types.YetfRecord {
     }
 
     default: {
-      record = {
-        rollNumber,
-        recordType
-      }
+      throw new Error(`Unknown recordType = ${recordType}`)
     }
   }
 
   return record
+}
+
+export function parseRollNumber(rollNumber: string): ParsedRollNumber {
+  const parsedRollNumber: ParsedRollNumber = {
+    county: rollNumber.slice(0, 2),
+    municipality: rollNumber.slice(2, 4),
+    mapArea: rollNumber.slice(4, 6),
+    mapDivision: rollNumber.slice(6, 7),
+    mapSubdivision: rollNumber.slice(7, 10),
+    parcel: rollNumber.slice(10, 13),
+    parcelSub: rollNumber.slice(13, 15),
+    primarySubordinate: rollNumber.slice(15, 19)
+  }
+
+  return parsedRollNumber
 }

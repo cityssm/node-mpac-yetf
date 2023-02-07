@@ -1,8 +1,19 @@
-export interface YetfRecord {
+export type RecordType = 'AA' | 'BB' | 'CC' | 'DD' | 'GG' | 'HH' | 'JJ' | 'KK' | 'LL' | 'MM' | 'PA' | 'PB' | 'PC' | 'PD' | 'PI';
+export interface RawYetfRecord {
     rollNumber: string;
-    recordType: string;
+    recordType: RecordType;
 }
-export interface YetfRecordAA extends YetfRecord {
+export interface FormattedYetfRecord extends RawYetfRecord {
+    rollNumberCounty: string;
+    rollNumberMunicipality: string;
+    rollNumberMapArea: string;
+    rollNumberMapDivision: string;
+    rollNumberMapSubdivision: string;
+    rollNumberParcel: string;
+    rollNumberParcelSub: string;
+    rollNumberPrimarySubordinate: string;
+}
+export interface RawYetfRecordAA extends RawYetfRecord {
     recordType: 'AA';
     ward: string;
     poll: string;
@@ -16,7 +27,7 @@ export interface YetfRecordAA extends YetfRecord {
     frenchPublicSchoolCode: string;
     frenchSeparateSchoolCode: string;
 }
-export interface YetfRecordBB extends YetfRecord {
+export interface RawYetfRecordBB extends RawYetfRecord {
     recordType: 'BB';
     frontage: string;
     siteArea: string;
@@ -28,7 +39,30 @@ export interface YetfRecordBB extends YetfRecord {
     services: string;
     access: string;
 }
-export interface YetfRecordCC extends YetfRecord {
+export interface FormattedYetfRecordBB extends RawYetfRecordBB, FormattedYetfRecord {
+    recordType: 'BB';
+    frontageFeet?: number;
+    frontageMetres?: number;
+    siteAreaSquareFeet?: number;
+    siteAreaAcres?: number;
+    depthFeet?: number;
+    depthMetres?: number;
+    farmForestryExemptionAcres?: number;
+    siteImprovementHasBoathouse: boolean;
+    siteImprovementHasSiteImprovements: boolean;
+    siteImprovementHasOther: boolean;
+    siteImprovementHasAccessibleFacilities: boolean;
+    siteImprovementHasPool: boolean;
+    siteImprovementHasElevator: boolean;
+    siteImprovementHasSauna: boolean;
+    siteImprovementHasMultiple: boolean;
+    siteImprovementHasTennisCourts: boolean;
+    propertyCodeClass: string;
+    propertyCodeName: string;
+    servicesName?: string;
+    accessName: string;
+}
+export interface RawYetfRecordCC extends RawYetfRecord {
     recordType: 'CC';
     sequenceNumber: string;
     characterOfConstruction: string;
@@ -39,7 +73,7 @@ export interface YetfRecordCC extends YetfRecord {
     condition: string;
     fullStoreys: string;
     partStoreys: string;
-    heightEffectiveYear: string;
+    heightEffectiveYearBuilt: string;
     split: string;
     grossArea: string;
     totalBasementArea: string;
@@ -55,7 +89,30 @@ export interface YetfRecordCC extends YetfRecord {
     garageSpaces: string;
     structureCode: string;
 }
-export interface YetfRecordDD extends YetfRecord {
+export interface FormattedYetfRecordCC extends RawYetfRecordCC, FormattedYetfRecord {
+    recordType: 'CC';
+    characterOfConstructionDescription?: string;
+    characterOfConstructionFramingDescription?: string;
+    characterOfConstructionFloorDescription?: string;
+    characterOfConstructionRoofDescription?: string;
+    characterOfConstructionWallsDescription?: string;
+    yearBuiltCodeName?: string;
+    conditionName?: string;
+    conditionRankingOutOf5?: number;
+    partStoreysName?: string;
+    heightFeet?: number;
+    effectiveYearBuilt?: number;
+    splitName?: string;
+    grossAreaSquareFeet?: number;
+    totalBasementAreaSquareFeet?: number;
+    finishedBasementAreaSquareFeet?: number;
+    basementFinishName?: string;
+    heatingTypeName?: string;
+    garageTypeName?: string;
+    structureCodeClass?: string;
+    structureCodeName?: string;
+}
+export interface RawYetfRecordDD extends RawYetfRecord {
     recordType: 'DD';
     sequenceNumber: string;
     acres: string;
@@ -66,7 +123,11 @@ export interface YetfRecordDD extends YetfRecord {
     woodedAcreage: string;
     orchardAcreage: string;
 }
-export interface YetfRecordGG extends YetfRecord {
+export interface FormattedYetfRecordDD extends RawYetfRecordDD, FormattedYetfRecord {
+    recordType: 'DD';
+    textureName: string;
+}
+export interface RawYetfRecordGG extends RawYetfRecord {
     recordType: 'GG';
     sequenceNumber: string;
     name: string;
@@ -81,17 +142,17 @@ export interface YetfRecordGG extends YetfRecord {
     monthOfBirth: string;
     frenchLanguageEducationRights: string;
 }
-export interface YetfRecordHH extends YetfRecord {
+export interface RawYetfRecordHH extends RawYetfRecord {
     recordType: 'HH';
     sequenceNumber: string;
     mailingAddress: string;
 }
-export interface YetfRecordJJ extends YetfRecord {
+export interface RawYetfRecordJJ extends RawYetfRecord {
     recordType: 'JJ';
     cityProvinceCountry: string;
     postalCode: string;
 }
-export interface YetfRecordKK extends YetfRecord {
+export interface RawYetfRecordKK extends RawYetfRecord {
     recordType: 'KK';
     streetNumber: string;
     upperStreetNumber: string;
@@ -99,17 +160,17 @@ export interface YetfRecordKK extends YetfRecord {
     streetName: string;
     unitNumber: string;
 }
-export interface YetfRecordLL extends YetfRecord {
+export interface RawYetfRecordLL extends RawYetfRecord {
     recordType: 'LL';
     sequenceNumber: string;
     legalDescription: string;
 }
-export interface YetfRecordMM extends YetfRecord {
+export interface RawYetfRecordMM extends RawYetfRecord {
     recordType: 'MM';
     sequenceNumber: string;
     commentsSiteDimensions: string;
 }
-export interface YetfRecordPA extends YetfRecord {
+export interface RawYetfRecordPA extends RawYetfRecord {
     recordType: 'PA';
     sequenceNumber: string;
     phasedInValue: string;
@@ -126,25 +187,25 @@ export interface YetfRecordPA extends YetfRecord {
     propertyTotal: string;
     realtyPortionTotal: string;
 }
-export interface YetfRecordPB extends YetfRecord {
+export interface RawYetfRecordPB extends RawYetfRecord {
     recordType: 'PB';
     sequenceNumber: string;
     realtyPortionEnglishPublic: string;
     realtyPortionEnglishSeparate: string;
     realtyPortionNoSupport: string;
 }
-export interface YetfRecordPC extends YetfRecord {
+export interface RawYetfRecordPC extends RawYetfRecord {
     recordType: 'PC';
     sequenceNumber: string;
     realtyPortionFrenchPublic: string;
     realtyPortionFrenchSeparate: string;
 }
-export interface YetfRecordPD extends YetfRecord {
+export interface RawYetfRecordPD extends RawYetfRecord {
     recordType: 'PD';
     sequenceNumber: string;
     realtyPortionProtestantSeparate: string;
 }
-export interface YetfRecordPI extends YetfRecord {
+export interface RawYetfRecordPI extends RawYetfRecord {
     recordType: 'PI';
     phaseInStartingPoint: string;
     phaseInValue: string;

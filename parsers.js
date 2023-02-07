@@ -58,7 +58,7 @@ export function parseYetfRecordString(recordString) {
                 condition: recordString.slice(36, 37).trim(),
                 fullStoreys: recordString.slice(37, 39).trim(),
                 partStoreys: recordString.slice(39, 40).trim(),
-                heightEffectiveYear: recordString.slice(40, 44).trim(),
+                heightEffectiveYearBuilt: recordString.slice(40, 44).trim(),
                 split: recordString.slice(44, 45).trim(),
                 grossArea: recordString.slice(45, 51).trim(),
                 totalBasementArea: recordString.slice(51, 55).trim(),
@@ -239,11 +239,21 @@ export function parseYetfRecordString(recordString) {
             break;
         }
         default: {
-            record = {
-                rollNumber,
-                recordType
-            };
+            throw new Error(`Unknown recordType = ${recordType}`);
         }
     }
     return record;
+}
+export function parseRollNumber(rollNumber) {
+    const parsedRollNumber = {
+        county: rollNumber.slice(0, 2),
+        municipality: rollNumber.slice(2, 4),
+        mapArea: rollNumber.slice(4, 6),
+        mapDivision: rollNumber.slice(6, 7),
+        mapSubdivision: rollNumber.slice(7, 10),
+        parcel: rollNumber.slice(10, 13),
+        parcelSub: rollNumber.slice(13, 15),
+        primarySubordinate: rollNumber.slice(15, 19)
+    };
+    return parsedRollNumber;
 }

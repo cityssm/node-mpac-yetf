@@ -1,30 +1,18 @@
 import events from 'node:events'
 import fs from 'node:fs'
 import readline from 'node:readline'
+import { formatRawRecordBB, formatRawRecordCC } from './formatters.js'
 
-import { parseYetfRecordString } from './parsers.js'
+import { parseRollNumber, parseYetfRecordString } from './parsers.js'
 
 import type * as types from './types'
 
-
+type CallbackType = types.RecordType | 'all'
 
 interface ParseYetfOptions {
-  callbacks?: {
-    AA?: (record: types.YetfRecordAA) => void
-    BB?: (record: types.YetfRecordBB) => void
-    CC?: (record: types.YetfRecordCC) => void
-    DD?: (record: types.YetfRecordDD) => void
-    GG?: (record: types.YetfRecordGG) => void
-    HH?: (record: types.YetfRecordHH) => void
-    JJ?: (record: types.YetfRecordJJ) => void
-    KK?: (record: types.YetfRecordKK) => void
-    LL?: (record: types.YetfRecordLL) => void
-    MM?: (record: types.YetfRecordMM) => void
-    PA?: (record: types.YetfRecordPA) => void
-    PB?: (record: types.YetfRecordPB) => void
-    PC?: (record: types.YetfRecordPC) => void
-    PD?: (record: types.YetfRecordPD) => void
-    PI?: (record: types.YetfRecordPI) => void
+  addFormattedFields?: boolean
+  callbacks: {
+    [recordType in CallbackType]?: (record: types.RawYetfRecord) => void
   }
 }
 
@@ -32,17 +20,54 @@ export async function parseYetf(
   filePath: string,
   options: ParseYetfOptions
 ): Promise<boolean> {
-
-  const callbacks = options.callbacks ?? {}
-
   const rl = readline.createInterface({
     input: fs.createReadStream(filePath)
   })
 
   rl.on('line', (recordString) => {
-    const record = parseYetfRecordString(recordString)
+    let record = parseYetfRecordString(recordString)
 
-    
+    if (options.addFormattedFields ?? false) {
+      const parsedRollNumber = parseRollNumber(record.rollNumber)
+
+      ;(record as types.FormattedYetfRecord).rollNumberCounty =
+        parsedRollNumber.county
+      ;(record as types.FormattedYetfRecord).rollNumberMunicipality =
+        parsedRollNumber.municipality
+      ;(record as types.FormattedYetfRecord).rollNumberMapArea =
+        parsedRollNumber.mapArea
+      ;(record as types.FormattedYetfRecord).rollNumberMapDivision =
+        parsedRollNumber.mapDivision
+      ;(record as types.FormattedYetfRecord).rollNumberMapSubdivision =
+        parsedRollNumber.mapSubdivision
+      ;(record as types.FormattedYetfRecord).rollNumberParcel =
+        parsedRollNumber.parcel
+      ;(record as types.FormattedYetfRecord).rollNumberParcelSub =
+        parsedRollNumber.parcelSub
+      ;(record as types.FormattedYetfRecord).rollNumberPrimarySubordinate =
+        parsedRollNumber.primarySubordinate
+
+      switch (record.recordType) {
+        case 'BB': {
+          record = formatRawRecordBB(record as types.RawYetfRecordBB)
+          break
+        }
+        case 'CC': {
+          record = formatRawRecordCC(record as types.RawYetfRecordCC)
+          break
+        }
+      }
+    }
+
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (options.callbacks.all) {
+      options.callbacks.all(record)
+    }
+
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (options.callbacks[record.recordType]) {
+      options.callbacks[record.recordType]!(record)
+    }
   })
 
   await events.once(rl, 'close')
