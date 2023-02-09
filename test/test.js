@@ -25,7 +25,7 @@ describe('parseYetf', () => {
                     assert.ok(record.rollNumber !== undefined && record.rollNumber !== '');
                     assert.ok(record.rollNumberCounty !== undefined && record.rollNumberCounty !== '');
                 },
-                PI: (record) => {
+                AA: (record) => {
                     console.log(record);
                 }
             }
