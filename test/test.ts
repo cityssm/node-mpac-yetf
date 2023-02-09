@@ -28,6 +28,9 @@ describe('parseYetf', () => {
           recordCount += 1
           assert.ok(record.rollNumber !== undefined && record.rollNumber !== '')
           assert.ok((record as FormattedYetfRecord).rollNumberCounty !== undefined && (record as FormattedYetfRecord).rollNumberCounty !== '')
+        },
+        PI: (record) => {
+          console.log(record)
         }
       }
     })

@@ -1,5 +1,5 @@
 export function parseYetfRecordString(recordString) {
-    const rollNumber = recordString.slice(0, 18);
+    const rollNumber = recordString.slice(0, 19);
     const recordType = recordString.slice(19, 21);
     let record;
     switch (recordType) {

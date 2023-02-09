@@ -2,7 +2,14 @@
   "name": "@cityssm/mpac-yetf",
   "version": "0.1.0",
   "type": "module",
-  "description": "Parses the MPAC Year-End Tax File (YETF) into a usable object. ",
+  "description": "Parses the MPAC Year-End Tax File (YETF) into a usable object.",
+  "keywords": [
+    "mpac",
+    "parser",
+    "property-assessment",
+    "property-tax",
+    "year-end-tax-file"
+  ],
   "exports": "./index.js",
   "scripts": {
     "test": "mocha"
@@ -11,7 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/cityssm/node-mpac-yetf.git"
   },
-  "author": "",
+  "author": "The Corporation of the City of Sault Ste. Marie",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cityssm/node-mpac-yetf/issues"

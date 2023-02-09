@@ -14,7 +14,7 @@ interface ParsedRollNumber {
 export function parseYetfRecordString(
   recordString: string
 ): types.RawYetfRecord {
-  const rollNumber = recordString.slice(0, 18)
+  const rollNumber = recordString.slice(0, 19)
   const recordType = recordString.slice(19, 21)
 
   let record: types.RawYetfRecord

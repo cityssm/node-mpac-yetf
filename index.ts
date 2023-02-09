@@ -1,7 +1,12 @@
 import events from 'node:events'
 import fs from 'node:fs'
 import readline from 'node:readline'
-import { formatRawRecordBB, formatRawRecordCC } from './formatters.js'
+
+import { formatBB } from './formatters/bbFormatter.js'
+import { formatCC } from './formatters/ccFormatter.js'
+import { formatDD } from './formatters/ddFormatter.js'
+import { formatGG } from './formatters/ggFormatter.js'
+import { formatPA } from './formatters/paFormatter.js'
 
 import { parseRollNumber, parseYetfRecordString } from './parsers.js'
 
@@ -49,11 +54,23 @@ export async function parseYetf(
 
       switch (record.recordType) {
         case 'BB': {
-          record = formatRawRecordBB(record as types.RawYetfRecordBB)
+          record = formatBB(record as types.RawYetfRecordBB)
           break
         }
         case 'CC': {
-          record = formatRawRecordCC(record as types.RawYetfRecordCC)
+          record = formatCC(record as types.RawYetfRecordCC)
+          break
+        }
+        case 'DD': {
+          record = formatDD(record as types.RawYetfRecordDD)
+          break
+        }
+        case 'GG': {
+          record = formatGG(record as types.RawYetfRecordGG)
+          break
+        }
+        case 'PA': {
+          record = formatPA(record as types.RawYetfRecordPA)
           break
         }
       }

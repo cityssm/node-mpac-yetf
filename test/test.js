@@ -24,6 +24,9 @@ describe('parseYetf', () => {
                     recordCount += 1;
                     assert.ok(record.rollNumber !== undefined && record.rollNumber !== '');
                     assert.ok(record.rollNumberCounty !== undefined && record.rollNumberCounty !== '');
+                },
+                PI: (record) => {
+                    console.log(record);
                 }
             }
         });

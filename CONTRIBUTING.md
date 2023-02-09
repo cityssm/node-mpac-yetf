@@ -1,4 +1,4 @@
-# Thank you for your interest in making the Street Name Normalize package better
+# Thank you for your interest in making the MPAC YETF package better
 
 Together, we can build high quality software that meets the needs of municipalities,
 while remaining open and budget conscious.

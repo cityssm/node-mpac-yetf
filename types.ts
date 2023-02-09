@@ -170,7 +170,9 @@ export interface RawYetfRecordDD extends RawYetfRecord {
 
 export interface FormattedYetfRecordDD extends RawYetfRecordDD, FormattedYetfRecord {
   recordType: 'DD'
-  textureName: string
+  textureName?: string
+  soilClassPointsRemainingMin?: number
+  soilClassPointsRemainingMax?: number
 }
 
 /**
@@ -191,6 +193,14 @@ export interface RawYetfRecordGG extends RawYetfRecord {
   yearOfBirth: string
   monthOfBirth: string
   frenchLanguageEducationRights: string
+}
+
+export interface FormattedYetfRecordGG extends RawYetfRecordGG, FormattedYetfRecord {
+  recordType: 'GG'
+  identifierName?: string
+  occupancyStatusName?: string
+  schoolSupportName?: string
+  residencyCodeDescription?: string
 }
 
 /**
@@ -266,6 +276,16 @@ export interface RawYetfRecordPA extends RawYetfRecord {
   propertyType: string
   propertyTotal: string
   realtyPortionTotal: string
+}
+
+export interface FormattedYetfRecordPA extends RawYetfRecordPA, FormattedYetfRecord {
+  recordType: 'PA'
+  unitClassDescription?: string
+  realtyTaxClassName?: string
+  realtyTaxQualifierClass?: string
+  realtyTaxQualifierName?: string
+  unitSupportName?: string
+  propertyTypeName?: string
 }
 
 /**

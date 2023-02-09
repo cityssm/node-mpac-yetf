@@ -1,7 +1,11 @@
 import events from 'node:events';
 import fs from 'node:fs';
 import readline from 'node:readline';
-import { formatRawRecordBB, formatRawRecordCC } from './formatters.js';
+import { formatBB } from './formatters/bbFormatter.js';
+import { formatCC } from './formatters/ccFormatter.js';
+import { formatDD } from './formatters/ddFormatter.js';
+import { formatGG } from './formatters/ggFormatter.js';
+import { formatPA } from './formatters/paFormatter.js';
 import { parseRollNumber, parseYetfRecordString } from './parsers.js';
 export async function parseYetf(filePath, options) {
     const rl = readline.createInterface({
@@ -29,11 +33,23 @@ export async function parseYetf(filePath, options) {
                 parsedRollNumber.primarySubordinate;
             switch (record.recordType) {
                 case 'BB': {
-                    record = formatRawRecordBB(record);
+                    record = formatBB(record);
                     break;
                 }
                 case 'CC': {
-                    record = formatRawRecordCC(record);
+                    record = formatCC(record);
+                    break;
+                }
+                case 'DD': {
+                    record = formatDD(record);
+                    break;
+                }
+                case 'GG': {
+                    record = formatGG(record);
+                    break;
+                }
+                case 'PA': {
+                    record = formatPA(record);
                     break;
                 }
             }
