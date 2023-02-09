@@ -51,6 +51,12 @@ export interface RawYetfRecordAA extends RawYetfRecord {
   frenchSeparateSchoolCode: string
 }
 
+export interface FormattedYetfRecordAA
+  extends RawYetfRecordAA,
+    FormattedYetfRecord {
+  recordType: 'AA'
+}
+
 /**
  * BB Record
  * - Property Data
@@ -168,7 +174,9 @@ export interface RawYetfRecordDD extends RawYetfRecord {
   orchardAcreage: string
 }
 
-export interface FormattedYetfRecordDD extends RawYetfRecordDD, FormattedYetfRecord {
+export interface FormattedYetfRecordDD
+  extends RawYetfRecordDD,
+    FormattedYetfRecord {
   recordType: 'DD'
   textureName?: string
   soilClassPointsRemainingMin?: number
@@ -195,7 +203,9 @@ export interface RawYetfRecordGG extends RawYetfRecord {
   frenchLanguageEducationRights: string
 }
 
-export interface FormattedYetfRecordGG extends RawYetfRecordGG, FormattedYetfRecord {
+export interface FormattedYetfRecordGG
+  extends RawYetfRecordGG,
+    FormattedYetfRecord {
   recordType: 'GG'
   identifierName?: string
   occupancyStatusName?: string
@@ -213,6 +223,12 @@ export interface RawYetfRecordHH extends RawYetfRecord {
   mailingAddress: string
 }
 
+export interface FormattedYetfRecordHH
+  extends RawYetfRecordHH,
+    FormattedYetfRecord {
+  recordType: 'HH'
+}
+
 /**
  * JJ Record
  * - City/Province Mailing Address
@@ -221,6 +237,12 @@ export interface RawYetfRecordJJ extends RawYetfRecord {
   recordType: 'JJ'
   cityProvinceCountry: string
   postalCode: string
+}
+
+export interface FormattedYetfRecordJJ
+  extends RawYetfRecordJJ,
+    FormattedYetfRecord {
+  recordType: 'JJ'
 }
 
 /**
@@ -236,6 +258,12 @@ export interface RawYetfRecordKK extends RawYetfRecord {
   unitNumber: string
 }
 
+export interface FormattedYetfRecordKK
+  extends RawYetfRecordKK,
+    FormattedYetfRecord {
+  recordType: 'KK'
+}
+
 /**
  * LL Record
  * - Legal Description
@@ -246,6 +274,12 @@ export interface RawYetfRecordLL extends RawYetfRecord {
   legalDescription: string
 }
 
+export interface FormattedYetfRecordLL
+  extends RawYetfRecordLL,
+    FormattedYetfRecord {
+  recordType: 'LL'
+}
+
 /**
  * MM Record
  * - Comments and Site Dimensions
@@ -254,6 +288,12 @@ export interface RawYetfRecordMM extends RawYetfRecord {
   recordType: 'MM'
   sequenceNumber: string
   commentsSiteDimensions: string
+}
+
+export interface FormattedYetfRecordMM
+  extends RawYetfRecordMM,
+    FormattedYetfRecord {
+  recordType: 'MM'
 }
 
 /**
@@ -278,7 +318,9 @@ export interface RawYetfRecordPA extends RawYetfRecord {
   realtyPortionTotal: string
 }
 
-export interface FormattedYetfRecordPA extends RawYetfRecordPA, FormattedYetfRecord {
+export interface FormattedYetfRecordPA
+  extends RawYetfRecordPA,
+    FormattedYetfRecord {
   recordType: 'PA'
   unitClassDescription?: string
   realtyTaxClassName?: string
@@ -300,6 +342,12 @@ export interface RawYetfRecordPB extends RawYetfRecord {
   realtyPortionNoSupport: string
 }
 
+export interface FormattedYetfRecordPB
+  extends RawYetfRecordPB,
+    FormattedYetfRecord {
+  recordType: 'PB'
+}
+
 /**
  * PC Record
  * - Assessment Value French Public, French Separate School Support
@@ -309,6 +357,12 @@ export interface RawYetfRecordPC extends RawYetfRecord {
   sequenceNumber: string
   realtyPortionFrenchPublic: string
   realtyPortionFrenchSeparate: string
+}
+
+export interface FormattedYetfRecordPC
+  extends RawYetfRecordPC,
+    FormattedYetfRecord {
+  recordType: 'PC'
 }
 
 /**
@@ -321,6 +375,12 @@ export interface RawYetfRecordPD extends RawYetfRecord {
   realtyPortionProtestantSeparate: string
 }
 
+export interface FormattedYetfRecordPD
+  extends RawYetfRecordPD,
+    FormattedYetfRecord {
+  recordType: 'PD'
+}
+
 /**
  * PI Record
  * - Phase-In
@@ -330,4 +390,10 @@ export interface RawYetfRecordPI extends RawYetfRecord {
   phaseInStartingPoint: string
   phaseInValue: string
   phaseInDestinationValue: string
+}
+
+export interface FormattedYetfRecordPI
+  extends RawYetfRecordPI,
+    FormattedYetfRecord {
+  recordType: 'PI'
 }

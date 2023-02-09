@@ -27,6 +27,9 @@ export interface RawYetfRecordAA extends RawYetfRecord {
     frenchPublicSchoolCode: string;
     frenchSeparateSchoolCode: string;
 }
+export interface FormattedYetfRecordAA extends RawYetfRecordAA, FormattedYetfRecord {
+    recordType: 'AA';
+}
 export interface RawYetfRecordBB extends RawYetfRecord {
     recordType: 'BB';
     frontage: string;
@@ -156,10 +159,16 @@ export interface RawYetfRecordHH extends RawYetfRecord {
     sequenceNumber: string;
     mailingAddress: string;
 }
+export interface FormattedYetfRecordHH extends RawYetfRecordHH, FormattedYetfRecord {
+    recordType: 'HH';
+}
 export interface RawYetfRecordJJ extends RawYetfRecord {
     recordType: 'JJ';
     cityProvinceCountry: string;
     postalCode: string;
+}
+export interface FormattedYetfRecordJJ extends RawYetfRecordJJ, FormattedYetfRecord {
+    recordType: 'JJ';
 }
 export interface RawYetfRecordKK extends RawYetfRecord {
     recordType: 'KK';
@@ -169,15 +178,24 @@ export interface RawYetfRecordKK extends RawYetfRecord {
     streetName: string;
     unitNumber: string;
 }
+export interface FormattedYetfRecordKK extends RawYetfRecordKK, FormattedYetfRecord {
+    recordType: 'KK';
+}
 export interface RawYetfRecordLL extends RawYetfRecord {
     recordType: 'LL';
     sequenceNumber: string;
     legalDescription: string;
 }
+export interface FormattedYetfRecordLL extends RawYetfRecordLL, FormattedYetfRecord {
+    recordType: 'LL';
+}
 export interface RawYetfRecordMM extends RawYetfRecord {
     recordType: 'MM';
     sequenceNumber: string;
     commentsSiteDimensions: string;
+}
+export interface FormattedYetfRecordMM extends RawYetfRecordMM, FormattedYetfRecord {
+    recordType: 'MM';
 }
 export interface RawYetfRecordPA extends RawYetfRecord {
     recordType: 'PA';
@@ -212,20 +230,32 @@ export interface RawYetfRecordPB extends RawYetfRecord {
     realtyPortionEnglishSeparate: string;
     realtyPortionNoSupport: string;
 }
+export interface FormattedYetfRecordPB extends RawYetfRecordPB, FormattedYetfRecord {
+    recordType: 'PB';
+}
 export interface RawYetfRecordPC extends RawYetfRecord {
     recordType: 'PC';
     sequenceNumber: string;
     realtyPortionFrenchPublic: string;
     realtyPortionFrenchSeparate: string;
 }
+export interface FormattedYetfRecordPC extends RawYetfRecordPC, FormattedYetfRecord {
+    recordType: 'PC';
+}
 export interface RawYetfRecordPD extends RawYetfRecord {
     recordType: 'PD';
     sequenceNumber: string;
     realtyPortionProtestantSeparate: string;
+}
+export interface FormattedYetfRecordPD extends RawYetfRecordPD, FormattedYetfRecord {
+    recordType: 'PD';
 }
 export interface RawYetfRecordPI extends RawYetfRecord {
     recordType: 'PI';
     phaseInStartingPoint: string;
     phaseInValue: string;
     phaseInDestinationValue: string;
+}
+export interface FormattedYetfRecordPI extends RawYetfRecordPI, FormattedYetfRecord {
+    recordType: 'PI';
 }

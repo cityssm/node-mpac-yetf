@@ -1,6 +1,6 @@
 {
   "name": "@cityssm/mpac-yetf",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "description": "Parses the MPAC Year-End Tax File (YETF) into a usable object.",
   "keywords": [
@@ -12,7 +12,8 @@
   ],
   "exports": "./index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary mocha"
   },
   "repository": {
     "type": "git",
