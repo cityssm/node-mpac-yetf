@@ -35,11 +35,11 @@ export const characterOfConstructionDescriptions = {
 };
 export const yearBuiltCodeNames = {
     E: 'Estimated R Renovated A Addition',
-    B: 'both Estimated and Renovated',
-    C: 'both Estimated and Addition',
-    D: 'both Renovated and Addition',
+    B: 'Both Estimated and Renovated',
+    C: 'Both Estimated and Addition',
+    D: 'Both Renovated and Addition',
     M: 'Estimated, Renovated and Addition',
-    N: 'none of the above codes are applicable'
+    N: 'None of the above codes are applicable'
 };
 export const conditionCodes = {
     E: { ranking: 5, name: 'Excellent' },
