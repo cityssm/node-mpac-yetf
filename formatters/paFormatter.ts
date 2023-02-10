@@ -14,7 +14,7 @@ export function formatPA(
 
   // Realty Tax Class
 
-  formattedYetfRecordPA.realtyTaxClass =
+  formattedYetfRecordPA.realtyTaxClassName =
     paLookups.realtyTaxClassNames[formattedYetfRecordPA.realtyTaxClass]
 
   // Realty Tax Qualifer

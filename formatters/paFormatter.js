@@ -3,7 +3,7 @@ export function formatPA(recordPA) {
     const formattedYetfRecordPA = recordPA;
     formattedYetfRecordPA.unitClassDescription =
         paLookups.unitClassDescriptions[formattedYetfRecordPA.unitClass];
-    formattedYetfRecordPA.realtyTaxClass =
+    formattedYetfRecordPA.realtyTaxClassName =
         paLookups.realtyTaxClassNames[formattedYetfRecordPA.realtyTaxClass];
     const realtyTaxQualifier = paLookups.realtyTaxQualifiers[formattedYetfRecordPA.realtyTaxQualifier];
     if (realtyTaxQualifier !== undefined) {
