@@ -11,7 +11,9 @@ export async function parseYetf(filePath, options) {
     const rl = readline.createInterface({
         input: fs.createReadStream(filePath)
     });
+    let lineNumber = 0;
     rl.on('line', (recordString) => {
+        lineNumber += 1;
         let record = parseYetfRecordString(recordString);
         if (options.addFormattedFields ?? false) {
             const parsedRollNumber = parseRollNumber(record.rollNumber);
@@ -55,10 +57,10 @@ export async function parseYetf(filePath, options) {
             }
         }
         if (options.callbacks.all) {
-            options.callbacks.all(record);
+            options.callbacks.all(record, lineNumber);
         }
         if (options.callbacks[record.recordType]) {
-            options.callbacks[record.recordType](record);
+            options.callbacks[record.recordType](record, lineNumber);
         }
     });
     await events.once(rl, 'close');
