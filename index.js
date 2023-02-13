@@ -6,6 +6,7 @@ import { formatCC } from './formatters/ccFormatter.js';
 import { formatDD } from './formatters/ddFormatter.js';
 import { formatGG } from './formatters/ggFormatter.js';
 import { formatPA } from './formatters/paFormatter.js';
+import { formatPB } from './formatters/pbFormatter.js';
 import { formatPC } from './formatters/pcFormatter.js';
 import { formatPD } from './formatters/pdFormatter.js';
 import { formatPI } from './formatters/piFormatter.js';
@@ -59,6 +60,10 @@ export async function parseYetf(filePath, options) {
                 }
                 case 'PC': {
                     record = formatPC(record);
+                    break;
+                }
+                case 'PB': {
+                    record = formatPB(record);
                     break;
                 }
                 case 'PD': {
