@@ -9,5 +9,7 @@ export function formatGG(recordGG) {
         ggLookups.schoolSupportNames[formattedYetfRecordGG.schoolSupport];
     formattedYetfRecordGG.residencyCodeDescription =
         ggLookups.residencyCodeDescriptions[formattedYetfRecordGG.residencyCode];
+    formattedYetfRecordGG.monthOfBirthName =
+        ggLookups.monthOfBirthNames[formattedYetfRecordGG.monthOfBirth];
     return formattedYetfRecordGG;
 }

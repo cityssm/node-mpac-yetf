@@ -49,7 +49,7 @@ export function formatBB(recordBB) {
     formattedRecordBB.propertyCodeClass =
         bbLookups.propertyCodeClasses[propertyCodeNumber - (propertyCodeNumber % 100)];
     formattedRecordBB.propertyCodeName =
-        bbLookups.propertyCodeNames[propertyCodeNumber];
+        bbLookups.propertyCodeNames[formattedRecordBB.propertyCode];
     formattedRecordBB.servicesName =
         bbLookups.serviceCodeNames[formattedRecordBB.services];
     formattedRecordBB.accessName =

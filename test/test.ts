@@ -7,8 +7,9 @@ describe('parseYetf', () => {
     let recordCount = 0
     const success = await parseYetf('./test/yetf.txt', {
       callbacks: {
-        all: (record) => {
+        all: (record, lineNumber) => {
           recordCount += 1
+          assert.strictEqual(recordCount, lineNumber)
           assert.ok(record.rollNumber !== undefined && record.rollNumber !== '')
           assert.ok((record as FormattedYetfRecord).rollNumberCounty === undefined)
         }

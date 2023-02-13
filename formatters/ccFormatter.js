@@ -51,6 +51,6 @@ export function formatCC(recordCC) {
     formattedRecordCC.structureCodeClass =
         ccLookups.structureCodeClasses[structureCode - (structureCode % 100)];
     formattedRecordCC.structureCodeName =
-        ccLookups.structureCodeNames[structureCode];
+        ccLookups.structureCodeNames[formattedRecordCC.structureCode];
     return formattedRecordCC;
 }

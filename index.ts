@@ -7,6 +7,9 @@ import { formatCC } from './formatters/ccFormatter.js'
 import { formatDD } from './formatters/ddFormatter.js'
 import { formatGG } from './formatters/ggFormatter.js'
 import { formatPA } from './formatters/paFormatter.js'
+import { formatPC } from './formatters/pcFormatter.js'
+import { formatPD } from './formatters/pdFormatter.js'
+import { formatPI } from './formatters/piFormatter.js'
 
 import { parseRollNumber, parseYetfRecordString } from './parsers.js'
 
@@ -136,6 +139,18 @@ export async function parseYetf(
         }
         case 'PA': {
           record = formatPA(record as types.RawYetfRecordPA)
+          break
+        }
+        case 'PC': {
+          record = formatPC(record as types.RawYetfRecordPC)
+          break
+        }
+        case 'PD': {
+          record = formatPD(record as types.RawYetfRecordPD)
+          break
+        }
+        case 'PI': {
+          record = formatPI(record as types.RawYetfRecordPI)
           break
         }
       }

@@ -90,7 +90,7 @@ export function formatBB(
     ]
 
   formattedRecordBB.propertyCodeName =
-    bbLookups.propertyCodeNames[propertyCodeNumber]
+    bbLookups.propertyCodeNames[formattedRecordBB.propertyCode]
 
   // Service Codes
 

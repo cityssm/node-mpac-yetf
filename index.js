@@ -6,6 +6,9 @@ import { formatCC } from './formatters/ccFormatter.js';
 import { formatDD } from './formatters/ddFormatter.js';
 import { formatGG } from './formatters/ggFormatter.js';
 import { formatPA } from './formatters/paFormatter.js';
+import { formatPC } from './formatters/pcFormatter.js';
+import { formatPD } from './formatters/pdFormatter.js';
+import { formatPI } from './formatters/piFormatter.js';
 import { parseRollNumber, parseYetfRecordString } from './parsers.js';
 export async function parseYetf(filePath, options) {
     const rl = readline.createInterface({
@@ -52,6 +55,18 @@ export async function parseYetf(filePath, options) {
                 }
                 case 'PA': {
                     record = formatPA(record);
+                    break;
+                }
+                case 'PC': {
+                    record = formatPC(record);
+                    break;
+                }
+                case 'PD': {
+                    record = formatPD(record);
+                    break;
+                }
+                case 'PI': {
+                    record = formatPI(record);
                     break;
                 }
             }

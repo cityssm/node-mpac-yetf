@@ -7,6 +7,11 @@ export function formatPA(
 ): types.FormattedYetfRecordPA {
   const formattedYetfRecordPA = recordPA as types.FormattedYetfRecordPA
 
+  formattedYetfRecordPA.phasedInValueDollars = Number.parseInt(
+    formattedYetfRecordPA.phasedInValue,
+    10
+  )
+
   // Unit Class
 
   formattedYetfRecordPA.unitClassDescription =

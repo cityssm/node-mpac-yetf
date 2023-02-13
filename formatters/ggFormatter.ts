@@ -27,5 +27,10 @@ export function formatGG(
   formattedYetfRecordGG.residencyCodeDescription =
     ggLookups.residencyCodeDescriptions[formattedYetfRecordGG.residencyCode]
 
+  // Month of Birth
+
+  formattedYetfRecordGG.monthOfBirthName =
+    ggLookups.monthOfBirthNames[formattedYetfRecordGG.monthOfBirth]
+
   return formattedYetfRecordGG
 }
