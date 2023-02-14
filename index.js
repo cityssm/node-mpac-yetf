@@ -1,6 +1,7 @@
 import events from 'node:events';
 import fs from 'node:fs';
 import readline from 'node:readline';
+import * as rollNumberLookups from './lookups/rollNumberLookups.js';
 import { formatBB } from './formatters/bbFormatter.js';
 import { formatCC } from './formatters/ccFormatter.js';
 import { formatDD } from './formatters/ddFormatter.js';
@@ -38,6 +39,8 @@ export async function parseYetf(filePath, options) {
                 parsedRollNumber.parcelSub;
             record.rollNumberPrimarySubordinate =
                 parsedRollNumber.primarySubordinate;
+            record.rollNumberMunicipalityName =
+                rollNumberLookups.rollNumberMunicipalities[parsedRollNumber.county + parsedRollNumber.municipality];
             switch (record.recordType) {
                 case 'BB': {
                     record = formatBB(record);

@@ -12,11 +12,6 @@ export function formatPA(
     10
   )
 
-  formattedYetfRecordPA.previousYearAssessmentDollars = Number.parseInt(
-    formattedYetfRecordPA.previousYearAssessment,
-    10
-  )
-
   // Unit Class
 
   formattedYetfRecordPA.unitClassDescription =
@@ -37,6 +32,13 @@ export function formatPA(
     formattedYetfRecordPA.realtyTaxQualifierName = realtyTaxQualifier.name
   }
 
+  // Previous Year Assessment
+
+  formattedYetfRecordPA.previousYearAssessmentDollars = Number.parseInt(
+    formattedYetfRecordPA.previousYearAssessment,
+    10
+  )
+
   // Unit Support
 
   formattedYetfRecordPA.unitSupportName =
@@ -46,6 +48,20 @@ export function formatPA(
 
   formattedYetfRecordPA.propertyTypeName =
     paLookups.propertyTypeNames[formattedYetfRecordPA.propertyType]
+
+  // Property Total
+
+  formattedYetfRecordPA.propertyTotalDollars = Number.parseInt(
+    formattedYetfRecordPA.propertyTotal,
+    10
+  )
+
+  // Realty Portion Total
+
+  formattedYetfRecordPA.realtyPortionTotalDollars = Number.parseInt(
+    formattedYetfRecordPA.realtyPortionTotal,
+    10
+  )
 
   return formattedYetfRecordPA
 }

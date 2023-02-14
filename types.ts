@@ -31,6 +31,7 @@ export interface RawYetfRecord {
 export interface FormattedYetfRecord extends RawYetfRecord {
   rollNumberCounty: string
   rollNumberMunicipality: string
+  rollNumberMunicipalityName?: string
   rollNumberMapArea: string
   rollNumberMapDivision: string
   rollNumberMapSubdivision: string
@@ -420,6 +421,8 @@ export interface FormattedYetfRecordPA
   unitSupportName?: typeof paLookups.unitSupportNames[keyof typeof paLookups.unitSupportNames]
   propertyType: '' | keyof typeof paLookups.propertyTypeNames
   propertyTypeName?: typeof paLookups.propertyTypeNames[keyof typeof paLookups.propertyTypeNames]
+  propertyTotalDollars: number
+  realtyPortionTotalDollars: number
 }
 
 /**
