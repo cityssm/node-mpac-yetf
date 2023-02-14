@@ -12,6 +12,11 @@ export function formatPA(
     10
   )
 
+  formattedYetfRecordPA.previousYearAssessmentDollars = Number.parseInt(
+    formattedYetfRecordPA.previousYearAssessment,
+    10
+  )
+
   // Unit Class
 
   formattedYetfRecordPA.unitClassDescription =

@@ -24,9 +24,13 @@ describe('parseYetf', () => {
                 all: (record) => {
                     recordCount += 1;
                     assert.ok(record.rollNumber !== undefined && record.rollNumber !== '');
-                    assert.ok(record.rollNumberCounty !== undefined && record.rollNumberCounty !== '');
+                    assert.ok(record.rollNumberCounty !== undefined &&
+                        record.rollNumberCounty !== '');
                 },
                 AA: (record) => {
+                    console.log(record);
+                },
+                KK: (record) => {
                     console.log(record);
                 }
             }

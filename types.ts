@@ -116,7 +116,7 @@ export interface FormattedYetfRecordBB
   siteImprovementHasSauna: boolean
   siteImprovementHasMultiple: boolean
   siteImprovementHasTennisCourts: boolean
-  propertyCode: '' | keyof typeof bbLookups.propertyCodeNames
+  propertyCode: string // for performance
   propertyCodeClass?: typeof bbLookups.propertyCodeClasses[keyof typeof bbLookups.propertyCodeClasses]
   propertyCodeName?: string // for performance
   services: '' | keyof typeof bbLookups.serviceCodeNames
@@ -194,7 +194,7 @@ export interface FormattedYetfRecordCC
   heatingTypeName?: typeof ccLookups.heatingTypeCodeNames[keyof typeof ccLookups.heatingTypeCodeNames]
   garageType: '' | keyof typeof ccLookups.garageTypeCodeNames
   garageTypeName?: typeof ccLookups.garageTypeCodeNames[keyof typeof ccLookups.garageTypeCodeNames]
-  structureCode: '' | keyof typeof ccLookups.structureCodeNames
+  structureCode: string // for performance
   structureCodeClass?: typeof ccLookups.structureCodeClasses[keyof typeof ccLookups.structureCodeClasses]
   structureCodeName?: string // for performance
 }
@@ -332,6 +332,7 @@ export interface FormattedYetfRecordKK
   extends RawYetfRecordKK,
     FormattedYetfRecord {
   recordType: 'KK'
+  civicAddress?: string
 }
 
 /**
@@ -414,6 +415,7 @@ export interface FormattedYetfRecordPA
   realtyTaxQualifier: '' | keyof typeof paLookups.realtyTaxQualifiers
   realtyTaxQualifierClass?: 'Taxable' | 'Payment in Lieu'
   realtyTaxQualifierName?: string
+  previousYearAssessmentDollars: number
   unitSupport: '' | keyof typeof paLookups.unitSupportNames
   unitSupportName?: typeof paLookups.unitSupportNames[keyof typeof paLookups.unitSupportNames]
   propertyType: '' | keyof typeof paLookups.propertyTypeNames

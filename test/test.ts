@@ -11,7 +11,9 @@ describe('parseYetf', () => {
           recordCount += 1
           assert.strictEqual(recordCount, lineNumber)
           assert.ok(record.rollNumber !== undefined && record.rollNumber !== '')
-          assert.ok((record as FormattedYetfRecord).rollNumberCounty === undefined)
+          assert.ok(
+            (record as FormattedYetfRecord).rollNumberCounty === undefined
+          )
         }
       }
     })
@@ -28,9 +30,15 @@ describe('parseYetf', () => {
         all: (record) => {
           recordCount += 1
           assert.ok(record.rollNumber !== undefined && record.rollNumber !== '')
-          assert.ok((record as FormattedYetfRecord).rollNumberCounty !== undefined && (record as FormattedYetfRecord).rollNumberCounty !== '')
+          assert.ok(
+            (record as FormattedYetfRecord).rollNumberCounty !== undefined &&
+              (record as FormattedYetfRecord).rollNumberCounty !== ''
+          )
         },
         AA: (record) => {
+          console.log(record)
+        },
+        KK: (record) => {
           console.log(record)
         }
       }

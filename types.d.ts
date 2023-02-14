@@ -72,7 +72,7 @@ export interface FormattedYetfRecordBB extends RawYetfRecordBB, FormattedYetfRec
     siteImprovementHasSauna: boolean;
     siteImprovementHasMultiple: boolean;
     siteImprovementHasTennisCourts: boolean;
-    propertyCode: '' | keyof typeof bbLookups.propertyCodeNames;
+    propertyCode: string;
     propertyCodeClass?: typeof bbLookups.propertyCodeClasses[keyof typeof bbLookups.propertyCodeClasses];
     propertyCodeName?: string;
     services: '' | keyof typeof bbLookups.serviceCodeNames;
@@ -135,7 +135,7 @@ export interface FormattedYetfRecordCC extends RawYetfRecordCC, FormattedYetfRec
     heatingTypeName?: typeof ccLookups.heatingTypeCodeNames[keyof typeof ccLookups.heatingTypeCodeNames];
     garageType: '' | keyof typeof ccLookups.garageTypeCodeNames;
     garageTypeName?: typeof ccLookups.garageTypeCodeNames[keyof typeof ccLookups.garageTypeCodeNames];
-    structureCode: '' | keyof typeof ccLookups.structureCodeNames;
+    structureCode: string;
     structureCodeClass?: typeof ccLookups.structureCodeClasses[keyof typeof ccLookups.structureCodeClasses];
     structureCodeName?: string;
 }
@@ -213,6 +213,7 @@ export interface RawYetfRecordKK extends RawYetfRecord {
 }
 export interface FormattedYetfRecordKK extends RawYetfRecordKK, FormattedYetfRecord {
     recordType: 'KK';
+    civicAddress?: string;
 }
 export interface RawYetfRecordLL extends RawYetfRecord {
     recordType: 'LL';
@@ -259,6 +260,7 @@ export interface FormattedYetfRecordPA extends RawYetfRecordPA, FormattedYetfRec
     realtyTaxQualifier: '' | keyof typeof paLookups.realtyTaxQualifiers;
     realtyTaxQualifierClass?: 'Taxable' | 'Payment in Lieu';
     realtyTaxQualifierName?: string;
+    previousYearAssessmentDollars: number;
     unitSupport: '' | keyof typeof paLookups.unitSupportNames;
     unitSupportName?: typeof paLookups.unitSupportNames[keyof typeof paLookups.unitSupportNames];
     propertyType: '' | keyof typeof paLookups.propertyTypeNames;

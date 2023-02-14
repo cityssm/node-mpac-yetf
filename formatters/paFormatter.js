@@ -2,6 +2,7 @@ import * as paLookups from '../lookups/paLookups.js';
 export function formatPA(recordPA) {
     const formattedYetfRecordPA = recordPA;
     formattedYetfRecordPA.phasedInValueDollars = Number.parseInt(formattedYetfRecordPA.phasedInValue, 10);
+    formattedYetfRecordPA.previousYearAssessmentDollars = Number.parseInt(formattedYetfRecordPA.previousYearAssessment, 10);
     formattedYetfRecordPA.unitClassDescription =
         paLookups.unitClassDescriptions[formattedYetfRecordPA.unitClass];
     formattedYetfRecordPA.realtyTaxClassName =

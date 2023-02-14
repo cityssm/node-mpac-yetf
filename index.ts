@@ -6,6 +6,7 @@ import { formatBB } from './formatters/bbFormatter.js'
 import { formatCC } from './formatters/ccFormatter.js'
 import { formatDD } from './formatters/ddFormatter.js'
 import { formatGG } from './formatters/ggFormatter.js'
+import { formatKK } from './formatters/kkFormatter.js'
 import { formatPA } from './formatters/paFormatter.js'
 import { formatPB } from './formatters/pbFormatter.js'
 import { formatPC } from './formatters/pcFormatter.js'
@@ -136,6 +137,10 @@ export async function parseYetf(
         }
         case 'GG': {
           record = formatGG(record as types.RawYetfRecordGG)
+          break
+        }
+        case 'KK': {
+          record = formatKK(record as types.RawYetfRecordKK)
           break
         }
         case 'PA': {

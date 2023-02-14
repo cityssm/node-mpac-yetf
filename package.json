@@ -36,5 +36,8 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-unicorn": "^45.0.2"
+  },
+  "dependencies": {
+    "@cityssm/civic-address-format": "^0.1.0"
   }
 }
