@@ -6,7 +6,9 @@ export declare const characterOfConstructionDescriptions: Readonly<Record<string
     walls?: string;
 }>>;
 export declare const yearBuiltCodeNames: Readonly<{
-    E: "Estimated R Renovated A Addition";
+    E: "Estimated";
+    R: "Renovated";
+    A: "Addition";
     B: "Both Estimated and Renovated";
     C: "Both Estimated and Addition";
     D: "Both Renovated and Addition";
