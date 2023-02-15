@@ -107,6 +107,7 @@ export async function parseYetf(
     if (options.addFormattedFields ?? false) {
       const parsedRollNumber = parseRollNumber(record.rollNumber)
 
+      // Roll Number Pieces
       ;(record as types.FormattedYetfRecord).rollNumberCounty =
         parsedRollNumber.county
       ;(record as types.FormattedYetfRecord).rollNumberMunicipality =
@@ -123,10 +124,14 @@ export async function parseYetf(
         parsedRollNumber.parcelSub
       ;(record as types.FormattedYetfRecord).rollNumberPrimarySubordinate =
         parsedRollNumber.primarySubordinate
+
+      // Related Roll Number Data
       ;(record as types.FormattedYetfRecord).rollNumberMunicipalityName =
         rollNumberLookups.rollNumberMunicipalities[
           parsedRollNumber.county + parsedRollNumber.municipality
         ]
+      ;(record as types.FormattedYetfRecord).rollNumberIsPrimary =
+        parsedRollNumber.primarySubordinate === '0000'
 
       switch (record.recordType) {
         case 'BB': {

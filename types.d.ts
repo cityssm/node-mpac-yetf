@@ -18,6 +18,7 @@ export interface FormattedYetfRecord extends RawYetfRecord {
     rollNumberParcel: string;
     rollNumberParcelSub: string;
     rollNumberPrimarySubordinate: string;
+    rollNumberIsPrimary: boolean;
 }
 export interface RawYetfRecordAA extends RawYetfRecord {
     recordType: 'AA';

@@ -38,6 +38,7 @@ export interface FormattedYetfRecord extends RawYetfRecord {
   rollNumberParcel: string
   rollNumberParcelSub: string
   rollNumberPrimarySubordinate: string
+  rollNumberIsPrimary: boolean
 }
 
 /**

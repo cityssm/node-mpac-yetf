@@ -41,6 +41,8 @@ export async function parseYetf(filePath, options) {
                 parsedRollNumber.primarySubordinate;
             record.rollNumberMunicipalityName =
                 rollNumberLookups.rollNumberMunicipalities[parsedRollNumber.county + parsedRollNumber.municipality];
+            record.rollNumberIsPrimary =
+                parsedRollNumber.primarySubordinate === '0000';
             switch (record.recordType) {
                 case 'BB': {
                     record = formatBB(record);
