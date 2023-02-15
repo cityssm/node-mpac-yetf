@@ -1,6 +1,7 @@
 export declare const identifierNames: Readonly<{
     M: "Male";
     F: "Female";
+    I: "Individual";
     X: "Corporations, taxable agencies and other non-persons";
     G: "Federal Government including agencies";
     P: "Provincial Government including agencies";
