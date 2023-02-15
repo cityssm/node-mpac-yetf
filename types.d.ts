@@ -116,6 +116,7 @@ export interface FormattedYetfRecordCC extends RawYetfRecordCC, FormattedYetfRec
     characterOfConstructionFloorDescription?: string;
     characterOfConstructionRoofDescription?: string;
     characterOfConstructionWallsDescription?: string;
+    qualityOutOf10?: number;
     yearBuiltCode: '' | keyof typeof ccLookups.yearBuiltCodeNames;
     yearBuiltCodeName?: typeof ccLookups.yearBuiltCodeNames[keyof typeof ccLookups.yearBuiltCodeNames];
     condition: '' | keyof typeof ccLookups.conditionCodes;

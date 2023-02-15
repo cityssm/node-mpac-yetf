@@ -31,6 +31,12 @@ export function formatCC(
       characterOfConstruction.walls ?? ''
   }
 
+  // Quality
+
+  if (formattedRecordCC.quality !== '') {
+    formattedRecordCC.qualityOutOf10 = Number.parseFloat(formattedRecordCC.quality)
+  }
+
   // Year Built Code
 
   formattedRecordCC.yearBuiltCodeName =

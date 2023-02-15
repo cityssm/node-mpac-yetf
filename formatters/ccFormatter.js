@@ -14,6 +14,9 @@ export function formatCC(recordCC) {
         formattedRecordCC.characterOfConstructionWallsDescription =
             characterOfConstruction.walls ?? '';
     }
+    if (formattedRecordCC.quality !== '') {
+        formattedRecordCC.qualityOutOf10 = Number.parseFloat(formattedRecordCC.quality);
+    }
     formattedRecordCC.yearBuiltCodeName =
         ccLookups.yearBuiltCodeNames[formattedRecordCC.yearBuiltCode];
     const condition = ccLookups.conditionCodes[formattedRecordCC.condition];
