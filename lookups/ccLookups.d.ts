@@ -31,27 +31,35 @@ export declare const splitCodeNames: Readonly<{
     N: "No Split";
 }>;
 export declare const basementFinishCodeNames: Readonly<{
-    R: "Recreation";
     A: "Apartment";
+    R: "Recreation";
+    '2': "Recreation";
+    '5': "Finished";
+    '8': "Apartment";
 }>;
 export declare const heatingTypeCodeNames: Readonly<{
-    FA: "Forced Air";
-    HW: "Hot Water";
+    AS: "Airtight Stove";
     EL: "Electric Heating";
+    FA: "Forced Air";
     GR: "Gravity Hot Air";
+    HP: "Heat Pump";
+    HW: "Hot Water";
+    IF: "In-Floor Radiant";
     PL: "Pipeless Hot Air";
     RD: "Radiant Electric";
+    ST: "Conventional Heating Stove";
     OT: "Other";
     NO: "No Central Heating System";
 }>;
 export declare const garageTypeCodeNames: Readonly<{
     A: "Attached";
-    I: "Indoor";
     B: "Basement or Built-in";
-    M: "More than one type is present";
     C: "Carport";
-    N: "No parking or No garage";
     D: "Detached";
+    I: "Indoor";
+    M: "More than one type is present";
+    N: "No parking or No garage";
+    O: "Outdoor";
     P: "Parking";
 }>;
 export declare const structureCodeClasses: Readonly<{
