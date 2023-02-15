@@ -97,11 +97,11 @@ export declare const propertyCodeNames: Readonly<{
     '370': "Residential Condominium Unit";
     '371': "Life Lease - No Redemption.";
     '372': "Life Lease - Return on Invest.";
-    '373': "Cooperative housing – equity";
+    '373': "Cooperative housing - equity";
     '374': "Cooperative housing - non-equity";
     '375': "Co-ownership";
-    '376': "Condominium locker unit – separately deeded.";
-    '377': "Condominium parking space/unit – separately deeded.";
+    '376': "Condominium locker unit - separately deeded.";
+    '377': "Condominium parking space/unit - separately deeded.";
     '378': "Residential Leasehold Condominium Corporation";
     '379': "Residential phased condominium corporation";
     '380': "Residential common elements condominium corporation";
