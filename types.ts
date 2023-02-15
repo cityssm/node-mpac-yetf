@@ -387,7 +387,7 @@ export interface FormattedYetfRecordMM
 export interface RawYetfRecordPA extends RawYetfRecord {
   recordType: 'PA'
   sequenceNumber: string
-  phasedInValue: string
+  phaseInValue: string
   unitClass: string
   realtyTaxClass: string
   realtyTaxQualifier: string
@@ -410,7 +410,7 @@ export interface FormattedYetfRecordPA
   extends RawYetfRecordPA,
     FormattedYetfRecord {
   recordType: 'PA'
-  phasedInValueDollars: number
+  phaseInValueDollars: number
   unitClass: '' | keyof typeof paLookups.unitClassDescriptions
   unitClassDescription?: typeof paLookups.unitClassDescriptions[keyof typeof paLookups.unitClassDescriptions]
   realtyTaxClass: '' | keyof typeof paLookups.realtyTaxClassNames

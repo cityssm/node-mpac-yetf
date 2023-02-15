@@ -7,8 +7,8 @@ export function formatPA(
 ): types.FormattedYetfRecordPA {
   const formattedYetfRecordPA = recordPA as types.FormattedYetfRecordPA
 
-  formattedYetfRecordPA.phasedInValueDollars = Number.parseInt(
-    formattedYetfRecordPA.phasedInValue,
+  formattedYetfRecordPA.phaseInValueDollars = Number.parseInt(
+    formattedYetfRecordPA.phaseInValue,
     10
   )
 
