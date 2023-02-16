@@ -1,6 +1,6 @@
 {
   "name": "@cityssm/mpac-yetf",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "type": "module",
   "description": "Parses the MPAC Year-End Tax File (YETF) into a usable object.",
   "keywords": [
