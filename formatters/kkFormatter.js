@@ -6,7 +6,9 @@ export function formatKK(recordKK) {
             civicNumber: Number.parseInt(formattedYetfRecordKK.streetNumber, 10).toString(),
             streetName: formattedYetfRecordKK.streetName,
             unitNumber: formattedYetfRecordKK.unitNumber,
-            qualifier: formattedYetfRecordKK.qualifier
+            qualifier: formattedYetfRecordKK.qualifier === '/'
+                ? '1/2'
+                : formattedYetfRecordKK.qualifier
         });
     }
     return formattedYetfRecordKK;

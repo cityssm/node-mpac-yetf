@@ -15,7 +15,10 @@ export function formatKK(
       ).toString(),
       streetName: formattedYetfRecordKK.streetName,
       unitNumber: formattedYetfRecordKK.unitNumber,
-      qualifier: formattedYetfRecordKK.qualifier
+      qualifier:
+        formattedYetfRecordKK.qualifier === '/'
+          ? '1/2'
+          : formattedYetfRecordKK.qualifier
     })
   }
 
