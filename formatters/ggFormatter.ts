@@ -1,6 +1,6 @@
 import * as ggLookups from '../lookups/ggLookups.js'
 
-import type * as types from '../types'
+import type * as types from '../types.js'
 
 export function formatGG(
   recordGG: types.RawYetfRecordGG

@@ -1,38 +1,38 @@
-export const identifierNames = Object.freeze({
-    M: 'Male',
-    F: 'Female',
-    I: 'Individual',
-    X: 'Corporations, taxable agencies and other non-persons',
-    G: 'Federal Government including agencies',
-    P: 'Provincial Government including agencies',
-    L: 'Local Government and Public Utilities',
+export const identifierNames = {
+    C: 'Conservation Authority',
     E: 'Education, religious or other exempt agencies',
+    F: 'Female',
+    G: 'Federal Government including agencies',
     H: 'Ontario Hydro',
-    C: 'Conservation Authority'
-});
-export const occupancyStatusNames = Object.freeze({
-    O: 'Owner or Joint Owner',
-    T: 'Tenant or Joint Tenant',
-    S: 'Spouse of owner or spouse of tenant',
+    I: 'Individual',
+    L: 'Local Government and Public Utilities',
+    M: 'Male',
+    P: 'Provincial Government including agencies',
+    X: 'Corporations, taxable agencies and other non-persons'
+};
+export const occupancyStatusNames = {
     B: 'Other residents such as boarders, lodgers, roomers, or children',
+    O: 'Owner or Joint Owner',
+    S: 'Spouse of owner or spouse of tenant',
+    T: 'Tenant or Joint Tenant',
     V: 'Vacant unit'
-});
-export const schoolSupportNames = Object.freeze({
-    P: 'English-Public',
-    S: 'English-Separate',
-    B: 'Split',
-    N: 'No Support',
-    D: 'Protestant-Separate',
+};
+export const schoolSupportNames = {
     A: 'French-Public',
-    C: 'French-Separate'
-});
-export const residencyCodeDescriptions = Object.freeze({
-    U: 'Individual lives in this unit',
-    M: 'Individual lives elsewhere in the same municipality',
+    B: 'Split',
+    C: 'French-Separate',
+    D: 'Protestant-Separate',
+    N: 'No Support',
+    P: 'English-Public',
+    S: 'English-Separate'
+};
+export const residencyCodeDescriptions = {
     A: 'Individual lives in another apartment or house on the same property',
-    N: 'Individual lives in another municipality'
-});
-export const monthOfBirthNames = Object.freeze({
+    M: 'Individual lives elsewhere in the same municipality',
+    N: 'Individual lives in another municipality',
+    U: 'Individual lives in this unit'
+};
+export const monthOfBirthNames = {
     '01': 'January',
     '02': 'February',
     '03': 'March',
@@ -45,4 +45,4 @@ export const monthOfBirthNames = Object.freeze({
     '10': 'October',
     '11': 'November',
     '12': 'December'
-});
+};

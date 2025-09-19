@@ -212,16 +212,3 @@ export function parseYetfRecordString(recordString) {
     }
     return record;
 }
-export function parseRollNumber(rollNumber) {
-    const parsedRollNumber = {
-        county: rollNumber.slice(0, 2),
-        municipality: rollNumber.slice(2, 4),
-        mapArea: rollNumber.slice(4, 6),
-        mapDivision: rollNumber.slice(6, 7),
-        mapSubdivision: rollNumber.slice(7, 10),
-        parcel: rollNumber.slice(10, 13),
-        parcelSub: rollNumber.slice(13, 15),
-        primarySubordinate: rollNumber.slice(15, 19)
-    };
-    return parsedRollNumber;
-}

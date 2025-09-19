@@ -1,6 +1,6 @@
 import * as paLookups from '../lookups/paLookups.js'
 
-import type * as types from '../types'
+import type * as types from '../types.js'
 
 export function formatPA(
   recordPA: types.RawYetfRecordPA

@@ -1,30 +1,30 @@
-export const characterOfConstructionDescriptions = Object.freeze({
+export const characterOfConstructionDescriptions = {
     A: {
-        framing: 'Structural steel columns and beams fireproofed with masonry, concrete, plaster or other incombustible material',
         floor: 'Concrete or concrete covered steel deck, fireproofed',
+        framing: 'Structural steel columns and beams fireproofed with masonry, concrete, plaster or other incombustible material',
         roof: 'Formed concrete, precast slabs, concrete or gypsum on steel deck, fireproofed',
         walls: 'Non-bearing cavity or curtain walls, masonry, concrete, metal panels, stone'
     },
     B: {
-        framing: 'Reinforced concrete columns and beams',
         floor: 'Concrete or concrete covered steel deck, fireproofed',
+        framing: 'Reinforced concrete columns and beams',
         roof: 'Formed concrete, precast slabs, concrete or gypsum on steel deck, fireproofed',
         walls: 'Non-bearing cavity or curtain walls, masonry, concrete, metal panels, stone'
     },
     C: {
-        framing: 'Masonry or concrete load-bearing walls with or without plasters or non load-bearing walls with concrete, wood or steel supporting the load',
         floor: 'Wood or steel floor joists or slab on ground',
+        framing: 'Masonry or concrete load-bearing walls with or without plasters or non load-bearing walls with concrete, wood or steel supporting the load',
         roof: 'Wood or steel joists, wood or steel deck',
         walls: 'Brick or concrete block masonry, tilt-up formed concrete'
     },
-    D: {
-        framing: 'Wood or steel studs in bearing wall, wood or steel skeleton frame',
-        floor: 'Wood or steel floor joints or slab on ground',
-        roof: 'Wood or steel joists, wood or steel deck',
-        walls: 'Any material except masonry or concrete'
-    },
     'C+D': {
         description: 'Mixtures of characters of construction'
+    },
+    D: {
+        floor: 'Wood or steel floor joints or slab on ground',
+        framing: 'Wood or steel studs in bearing wall, wood or steel skeleton frame',
+        roof: 'Wood or steel joists, wood or steel deck',
+        walls: 'Any material except masonry or concrete'
     },
     'D/C': {
         description: 'Character of construction is a Class D with an exterior cladding of a higher cost than normal character of construction D specifications'
@@ -32,43 +32,43 @@ export const characterOfConstructionDescriptions = Object.freeze({
     'N/A': {
         description: 'Not applicable'
     }
-});
-export const yearBuiltCodeNames = Object.freeze({
-    E: 'Estimated',
-    R: 'Renovated',
+};
+export const yearBuiltCodeNames = {
     A: 'Addition',
     B: 'Both Estimated and Renovated',
     C: 'Both Estimated and Addition',
     D: 'Both Renovated and Addition',
+    E: 'Estimated',
     M: 'Estimated, Renovated and Addition',
-    N: 'None of the above codes are applicable'
-});
-export const conditionCodes = Object.freeze({
-    E: { ranking: 5, name: 'Excellent' },
-    G: { ranking: 4, name: 'Good' },
-    A: { ranking: 3, name: 'Average' },
-    F: { ranking: 2, name: 'Fair' },
-    P: { ranking: 1, name: 'Poor' }
-});
-export const partStoreyCodeNames = Object.freeze({
+    N: 'None of the above codes are applicable',
+    R: 'Renovated'
+};
+export const conditionCodes = {
+    A: { name: 'Average', ranking: 3 },
+    E: { name: 'Excellent', ranking: 5 },
+    F: { name: 'Fair', ranking: 2 },
+    G: { name: 'Good', ranking: 4 },
+    P: { name: 'Poor', ranking: 1 }
+};
+export const partStoreyCodeNames = {
     '1': '1/4 storey',
     '2': '1/2 storey',
     '3': '3/4 storey'
-});
-export const splitCodeNames = Object.freeze({
+};
+export const splitCodeNames = {
     B: 'Back or Front Split',
+    N: 'No Split',
     S: 'Side Split',
-    Y: 'Yes (unconventional split style)',
-    N: 'No Split'
-});
-export const basementFinishCodeNames = Object.freeze({
-    A: 'Apartment',
-    R: 'Recreation',
+    Y: 'Yes (unconventional split style)'
+};
+export const basementFinishCodeNames = {
     '2': 'Recreation',
     '5': 'Finished',
-    '8': 'Apartment'
-});
-export const heatingTypeCodeNames = Object.freeze({
+    '8': 'Apartment',
+    A: 'Apartment',
+    R: 'Recreation'
+};
+export const heatingTypeCodeNames = {
     AS: 'Airtight Stove',
     EL: 'Electric Heating',
     FA: 'Forced Air',
@@ -76,13 +76,13 @@ export const heatingTypeCodeNames = Object.freeze({
     HP: 'Heat Pump',
     HW: 'Hot Water',
     IF: 'In-Floor Radiant',
+    NO: 'No Central Heating System',
+    OT: 'Other',
     PL: 'Pipeless Hot Air',
     RD: 'Radiant Electric',
-    ST: 'Conventional Heating Stove',
-    OT: 'Other',
-    NO: 'No Central Heating System'
-});
-export const garageTypeCodeNames = Object.freeze({
+    ST: 'Conventional Heating Stove'
+};
+export const garageTypeCodeNames = {
     A: 'Attached',
     B: 'Basement or Built-in',
     C: 'Carport',
@@ -92,8 +92,8 @@ export const garageTypeCodeNames = Object.freeze({
     N: 'No parking or No garage',
     O: 'Outdoor',
     P: 'Parking'
-});
-export const structureCodeClasses = Object.freeze({
+};
+export const structureCodeClasses = {
     100: 'Secondary',
     200: 'Farm',
     300: 'Residential',
@@ -101,8 +101,8 @@ export const structureCodeClasses = Object.freeze({
     500: 'Industrial',
     600: 'Institutional',
     700: 'Special Purpose'
-});
-export const structureCodeNames = Object.freeze({
+};
+export const structureCodeNames = {
     '101': 'Detached Garage',
     '102': 'Shed',
     '103': 'Greenhouse',
@@ -325,4 +325,4 @@ export const structureCodeNames = Object.freeze({
     '780': 'Grandstand/Stadium',
     '790': 'Exhibit Building/Museum/Gallery',
     '799': 'Unspecified Special Purpose Structure'
-});
+};

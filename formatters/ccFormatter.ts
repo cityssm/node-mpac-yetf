@@ -1,6 +1,6 @@
 import * as ccLookups from '../lookups/ccLookups.js'
 
-import type * as types from '../types'
+import type * as types from '../types.js'
 
 export function formatCC(
   recordCC: types.RawYetfRecordCC

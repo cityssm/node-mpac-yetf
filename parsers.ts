@@ -1,15 +1,4 @@
-import type * as types from './types'
-
-interface ParsedRollNumber {
-  county: string
-  municipality: string
-  mapArea: string
-  mapDivision: string
-  mapSubdivision: string
-  parcel: string
-  parcelSub: string
-  primarySubordinate: string
-}
+import type * as types from './types.js'
 
 function parseAA(recordAA: types.RawYetfRecordAA, recordString: string): void {
   recordAA.ward = recordString.slice(21, 23).trim()
@@ -246,6 +235,7 @@ export function parseYetfRecordString(
       break
     }
 
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     default: {
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       throw new Error(`Unknown recordType = ${recordType}`)
@@ -253,19 +243,4 @@ export function parseYetfRecordString(
   }
 
   return record
-}
-
-export function parseRollNumber(rollNumber: string): ParsedRollNumber {
-  const parsedRollNumber: ParsedRollNumber = {
-    county: rollNumber.slice(0, 2),
-    municipality: rollNumber.slice(2, 4),
-    mapArea: rollNumber.slice(4, 6),
-    mapDivision: rollNumber.slice(6, 7),
-    mapSubdivision: rollNumber.slice(7, 10),
-    parcel: rollNumber.slice(10, 13),
-    parcelSub: rollNumber.slice(13, 15),
-    primarySubordinate: rollNumber.slice(15, 19)
-  }
-
-  return parsedRollNumber
 }

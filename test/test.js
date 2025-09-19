@@ -1,7 +1,8 @@
 import * as assert from 'node:assert';
+import { describe, it } from 'node:test';
 import { parseYetf } from '../index.js';
-describe('parseYetf', () => {
-    it('Parses the test file with no extra formatting', async () => {
+await describe('parseYetf', async () => {
+    await it('Parses the test file with no extra formatting', async () => {
         let recordCount = 0;
         const success = await parseYetf('./test/yetf.txt', {
             callbacks: {
@@ -16,7 +17,7 @@ describe('parseYetf', () => {
         assert.ok(success);
         assert.ok(recordCount > 0);
     });
-    it('Parses the test file with formatting', async () => {
+    await it('Parses the test file with formatting', async () => {
         let recordCount = 0;
         const success = await parseYetf('./test/yetf.txt', {
             addFormattedFields: true,

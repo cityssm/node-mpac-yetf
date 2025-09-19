@@ -1,7 +1,7 @@
 import events from 'node:events';
 import fs from 'node:fs';
 import readline from 'node:readline';
-import * as rollNumberLookups from './lookups/rollNumberLookups.js';
+import { parseRollNumber, rollNumberMunicipalities } from '@cityssm/mpac-tools/rollNumbers';
 import { formatBB } from './formatters/bbFormatter.js';
 import { formatCC } from './formatters/ccFormatter.js';
 import { formatDD } from './formatters/ddFormatter.js';
@@ -12,7 +12,7 @@ import { formatPB } from './formatters/pbFormatter.js';
 import { formatPC } from './formatters/pcFormatter.js';
 import { formatPD } from './formatters/pdFormatter.js';
 import { formatPI } from './formatters/piFormatter.js';
-import { parseRollNumber, parseYetfRecordString } from './parsers.js';
+import { parseYetfRecordString } from './parsers.js';
 export async function parseYetf(filePath, options) {
     const rl = readline.createInterface({
         input: fs.createReadStream(filePath)
@@ -24,9 +24,9 @@ export async function parseYetf(filePath, options) {
         if (options.addFormattedFields ?? false) {
             const parsedRollNumber = parseRollNumber(record.rollNumber);
             record.rollNumberCounty =
-                parsedRollNumber.county;
+                parsedRollNumber.county ?? '';
             record.rollNumberMunicipality =
-                parsedRollNumber.municipality;
+                parsedRollNumber.municipality ?? '';
             record.rollNumberMapArea =
                 parsedRollNumber.mapArea;
             record.rollNumberMapDivision =
@@ -40,7 +40,8 @@ export async function parseYetf(filePath, options) {
             record.rollNumberPrimarySubordinate =
                 parsedRollNumber.primarySubordinate;
             record.rollNumberMunicipalityName =
-                rollNumberLookups.rollNumberMunicipalities[parsedRollNumber.county + parsedRollNumber.municipality];
+                rollNumberMunicipalities[(parsedRollNumber.county ?? '') +
+                    (parsedRollNumber.municipality ?? '')];
             record.rollNumberIsPrimary =
                 parsedRollNumber.primarySubordinate === '0000';
             switch (record.recordType) {
@@ -68,12 +69,12 @@ export async function parseYetf(filePath, options) {
                     record = formatPA(record);
                     break;
                 }
-                case 'PC': {
-                    record = formatPC(record);
-                    break;
-                }
                 case 'PB': {
                     record = formatPB(record);
+                    break;
+                }
+                case 'PC': {
+                    record = formatPC(record);
                     break;
                 }
                 case 'PD': {
@@ -84,12 +85,16 @@ export async function parseYetf(filePath, options) {
                     record = formatPI(record);
                     break;
                 }
+                default: {
+                    break;
+                }
             }
         }
-        if (options.callbacks.all) {
+        if (options.callbacks.all !== undefined) {
             options.callbacks.all(record, lineNumber);
         }
-        if (options.callbacks[record.recordType]) {
+        if (options.callbacks[record.recordType] !== undefined) {
+            ;
             options.callbacks[record.recordType](record, lineNumber);
         }
     });

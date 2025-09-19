@@ -1,6 +1,6 @@
-import { formatCivicAddress } from '@cityssm/civic-address-format'
+import formatCivicAddress from '@cityssm/civic-address-format'
 
-import type * as types from '../types'
+import type * as types from '../types.js'
 
 export function formatKK(
   recordKK: types.RawYetfRecordKK

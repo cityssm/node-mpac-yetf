@@ -2,7 +2,7 @@ import * as bbLookups from '../lookups/bbLookups.js'
 
 import * as constants from './constants.js'
 
-import type * as types from '../types'
+import type * as types from '../types.js'
 
 export function formatBB(
   recordBB: types.RawYetfRecordBB

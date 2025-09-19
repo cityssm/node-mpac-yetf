@@ -1,8 +1,14 @@
+// eslint-disable-next-line @eslint-community/eslint-comments/disable-enable-pair
+/* eslint-disable @typescript-eslint/no-unsafe-type-assertion */
+
 import events from 'node:events'
 import fs from 'node:fs'
 import readline from 'node:readline'
 
-import * as rollNumberLookups from './lookups/rollNumberLookups.js'
+import {
+  parseRollNumber,
+  rollNumberMunicipalities
+} from '@cityssm/mpac-tools/rollNumbers'
 
 import { formatBB } from './formatters/bbFormatter.js'
 import { formatCC } from './formatters/ccFormatter.js'
@@ -14,86 +20,92 @@ import { formatPB } from './formatters/pbFormatter.js'
 import { formatPC } from './formatters/pcFormatter.js'
 import { formatPD } from './formatters/pdFormatter.js'
 import { formatPI } from './formatters/piFormatter.js'
-
-import { parseRollNumber, parseYetfRecordString } from './parsers.js'
-
-import type * as types from './types'
+import { parseYetfRecordString } from './parsers.js'
+import type * as types from './types.js'
 
 interface ParseYetfOptions {
   addFormattedFields?: boolean
   callbacks: {
     all?: (
-      record: types.RawYetfRecord | types.FormattedYetfRecord,
+      record: types.FormattedYetfRecord | types.RawYetfRecord,
       lineNumber?: number
     ) => void
+
     AA?: (
-      record: types.RawYetfRecordAA | types.FormattedYetfRecordAA,
+      record: types.FormattedYetfRecordAA | types.RawYetfRecordAA,
       lineNumber?: number
     ) => void
     BB?: (
-      record: types.RawYetfRecordBB | types.FormattedYetfRecordBB,
+      record: types.FormattedYetfRecordBB | types.RawYetfRecordBB,
       lineNumber?: number
     ) => void
     CC?: (
-      record: types.RawYetfRecordCC | types.FormattedYetfRecordCC,
+      record: types.FormattedYetfRecordCC | types.RawYetfRecordCC,
       lineNumber?: number
     ) => void
     DD?: (
-      record: types.RawYetfRecordDD | types.FormattedYetfRecordDD,
+      record: types.FormattedYetfRecordDD | types.RawYetfRecordDD,
       lineNumber?: number
     ) => void
     GG?: (
-      record: types.RawYetfRecordGG | types.FormattedYetfRecordGG,
+      record: types.FormattedYetfRecordGG | types.RawYetfRecordGG,
       lineNumber?: number
     ) => void
     HH?: (
-      record: types.RawYetfRecordHH | types.FormattedYetfRecordHH,
+      record: types.FormattedYetfRecordHH | types.RawYetfRecordHH,
       lineNumber?: number
     ) => void
     JJ?: (
-      record: types.RawYetfRecordJJ | types.FormattedYetfRecordJJ,
+      record: types.FormattedYetfRecordJJ | types.RawYetfRecordJJ,
       lineNumber?: number
     ) => void
     KK?: (
-      record: types.RawYetfRecordKK | types.FormattedYetfRecordKK,
+      record: types.FormattedYetfRecordKK | types.RawYetfRecordKK,
       lineNumber?: number
     ) => void
     LL?: (
-      record: types.RawYetfRecordLL | types.FormattedYetfRecordLL,
+      record: types.FormattedYetfRecordLL | types.RawYetfRecordLL,
       lineNumber?: number
     ) => void
     MM?: (
-      record: types.RawYetfRecordMM | types.FormattedYetfRecordMM,
+      record: types.FormattedYetfRecordMM | types.RawYetfRecordMM,
       lineNumber?: number
     ) => void
     PA?: (
-      record: types.RawYetfRecordPA | types.FormattedYetfRecordPA,
+      record: types.FormattedYetfRecordPA | types.RawYetfRecordPA,
       lineNumber?: number
     ) => void
     PB?: (
-      record: types.RawYetfRecordPB | types.FormattedYetfRecordPB,
+      record: types.FormattedYetfRecordPB | types.RawYetfRecordPB,
       lineNumber?: number
     ) => void
     PC?: (
-      record: types.RawYetfRecordPC | types.FormattedYetfRecordPC,
+      record: types.FormattedYetfRecordPC | types.RawYetfRecordPC,
       lineNumber?: number
     ) => void
     PD?: (
-      record: types.RawYetfRecordPD | types.FormattedYetfRecordPD,
+      record: types.FormattedYetfRecordPD | types.RawYetfRecordPD,
       lineNumber?: number
     ) => void
     PI?: (
-      record: types.RawYetfRecordPI | types.FormattedYetfRecordPI,
+      record: types.FormattedYetfRecordPI | types.RawYetfRecordPI,
       lineNumber?: number
     ) => void
   }
 }
 
+/**
+ * Parses a YETF file line-by-line, calling the appropriate callback for each record type.
+ * @param filePath - Path to the YETF file
+ * @param options - Parsing options
+ * @returns Promise which resolves to `true` when parsing is complete
+ */
 export async function parseYetf(
   filePath: string,
   options: ParseYetfOptions
 ): Promise<boolean> {
   const rl = readline.createInterface({
+    // eslint-disable-next-line security/detect-non-literal-fs-filename
     input: fs.createReadStream(filePath)
   })
 
@@ -109,9 +121,9 @@ export async function parseYetf(
 
       // Roll Number Pieces
       ;(record as types.FormattedYetfRecord).rollNumberCounty =
-        parsedRollNumber.county
+        parsedRollNumber.county ?? ''
       ;(record as types.FormattedYetfRecord).rollNumberMunicipality =
-        parsedRollNumber.municipality
+        parsedRollNumber.municipality ?? ''
       ;(record as types.FormattedYetfRecord).rollNumberMapArea =
         parsedRollNumber.mapArea
       ;(record as types.FormattedYetfRecord).rollNumberMapDivision =
@@ -127,8 +139,9 @@ export async function parseYetf(
 
       // Related Roll Number Data
       ;(record as types.FormattedYetfRecord).rollNumberMunicipalityName =
-        rollNumberLookups.rollNumberMunicipalities[
-          parsedRollNumber.county + parsedRollNumber.municipality
+        rollNumberMunicipalities[
+          (parsedRollNumber.county ?? '') +
+            (parsedRollNumber.municipality ?? '')
         ]
       ;(record as types.FormattedYetfRecord).rollNumberIsPrimary =
         parsedRollNumber.primarySubordinate === '0000'
@@ -158,12 +171,12 @@ export async function parseYetf(
           record = formatPA(record as types.RawYetfRecordPA)
           break
         }
-        case 'PC': {
-          record = formatPC(record as types.RawYetfRecordPC)
-          break
-        }
         case 'PB': {
           record = formatPB(record as types.RawYetfRecordPB)
+          break
+        }
+        case 'PC': {
+          record = formatPC(record as types.RawYetfRecordPC)
           break
         }
         case 'PD': {
@@ -174,17 +187,24 @@ export async function parseYetf(
           record = formatPI(record as types.RawYetfRecordPI)
           break
         }
+        default: {
+          // No formatting available
+          break
+        }
       }
     }
 
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    if (options.callbacks.all) {
+    if (options.callbacks.all !== undefined) {
       options.callbacks.all(record, lineNumber)
     }
 
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    if (options.callbacks[record.recordType]) {
-      options.callbacks[record.recordType]!(record, lineNumber)
+    if (options.callbacks[record.recordType] !== undefined) {
+      ;(
+        options.callbacks[record.recordType] as (
+          record: types.FormattedYetfRecord | types.RawYetfRecord,
+          lineNumber?: number
+        ) => void
+      )(record, lineNumber)
     }
   })
 

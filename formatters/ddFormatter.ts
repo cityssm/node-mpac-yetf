@@ -1,6 +1,6 @@
 import * as ddLookups from '../lookups/ddLookups.js'
 
-import type * as types from '../types'
+import type * as types from '../types.js'
 
 export function formatDD(
   recordDD: types.RawYetfRecordDD

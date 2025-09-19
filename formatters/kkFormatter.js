@@ -1,4 +1,4 @@
-import { formatCivicAddress } from '@cityssm/civic-address-format';
+import formatCivicAddress from '@cityssm/civic-address-format';
 export function formatKK(recordKK) {
     const formattedYetfRecordKK = recordKK;
     if (formattedYetfRecordKK.streetNumber !== '') {

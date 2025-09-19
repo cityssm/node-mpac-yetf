@@ -1,8 +1,4 @@
-/* eslint-disable quote-props */
-/* eslint-disable unicorn/filename-case */
-/* eslint-disable @typescript-eslint/indent */
-
-export const textureCodeNames = Object.freeze({
+export const textureCodeNames = {
   '0': 'Non-farm land',
   '1': 'Sand',
   '2': 'Sandy loam',
@@ -13,37 +9,37 @@ export const textureCodeNames = Object.freeze({
   '7': 'Organic',
   '8': 'Water',
   '9': 'Rock'
-})
+} as const
 
 export const soilClassPointsRemaining: Readonly<
-  Record<'1' | '2' | '3' | '4' | '5' | '6' | '8', { min: number; max: number }>
-> = Object.freeze({
+  Record<'1' | '2' | '3' | '4' | '5' | '6' | '8', { max: number; min: number; }>
+> = {
   '1': {
-    min: 85,
-    max: 95
+    max: 95,
+    min: 85
   },
   '2': {
-    min: 70,
-    max: 80
+    max: 80,
+    min: 70
   },
   '3': {
-    min: 55,
-    max: 65
+    max: 65,
+    min: 55
   },
   '4': {
-    min: 40,
-    max: 50
+    max: 50,
+    min: 40
   },
   '5': {
-    min: 25,
-    max: 35
+    max: 35,
+    min: 25
   },
   '6': {
-    min: 5,
-    max: 20
+    max: 20,
+    min: 5
   },
   '8': {
-    min: 0,
-    max: 0
+    max: 0,
+    min: 0
   }
-})
+} as const

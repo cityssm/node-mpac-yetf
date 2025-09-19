@@ -1,7 +1,4 @@
-/* eslint-disable quote-props */
-/* eslint-disable @typescript-eslint/indent */
-
-export const unitClassDescriptions = Object.freeze({
+export const unitClassDescriptions = {
   CA: 'Property vested in a Conservation Authority',
   CL: 'Conservation Land',
   COM: 'Commercial property used for business and subject to business assessment',
@@ -31,9 +28,9 @@ export const unitClassDescriptions = Object.freeze({
   TPL: 'Oil and gas transmissions pipelines',
   UTC: 'Utility transmission and distribution corridors',
   VL: 'Vacant lands other than farmland, mining land, conservation land, or those of a Conservation Authority. This includes land owned by the Federal Government, Provincial Governments, etc.'
-})
+} as const
 
-export const realtyTaxClassNames = Object.freeze({
+export const realtyTaxClassNames = {
   A: 'Large Theatre',
   C: 'Commercial',
   D: 'Office Building',
@@ -58,11 +55,11 @@ export const realtyTaxClassNames = Object.freeze({
   X: 'Commercial (New Construction)',
   Y: 'Office Building (New Construction)',
   Z: 'Shopping Centre (New Construction)'
-})
+} as const
 
 export const realtyTaxQualifiers: Readonly<
-  Record<string, { class: 'Taxable' | 'Payment in Lieu'; name: string }>
-> = Object.freeze({
+  Record<string, { class: 'Payment in Lieu' | 'Taxable'; name: string }>
+> = {
   1: { class: 'Taxable', name: 'Farmland Awaiting Development Phase I' },
   2: {
     class: 'Payment in Lieu',
@@ -114,19 +111,20 @@ export const realtyTaxQualifiers: Readonly<
   X: { class: 'Taxable', name: 'Vacant Land' },
   Y: { class: 'Payment in Lieu', name: 'Full, Vacant Land' },
   Z: { class: 'Payment in Lieu', name: 'General, Vacant Land' }
-})
+} as const
 
-export const unitSupportNames = Object.freeze({
-  P: 'English-Public',
-  S: 'English-Separate',
+export const unitSupportNames = {
   A: 'French-Public',
+  B: 'Split',
   C: 'French-Separate',
   D: 'Protestant-Separate',
-  B: 'Split',
-  N: 'No Support'
-})
+  N: 'No Support',
+  P: 'English-Public',
+  S: 'English-Separate'
+} as const
 
-export const propertyTypeNames = Object.freeze({
+export const propertyTypeNames = {
+  '0': 'Rights-of-Way',
   '1': 'Residential',
   '2': 'Multi-Residential',
   '3': 'Commercial',
@@ -135,6 +133,5 @@ export const propertyTypeNames = Object.freeze({
   '6': 'Farm',
   '7': 'Recreational',
   '8': 'Residential Condos',
-  '9': 'Other/Unique Properties',
-  '0': 'Rights-of-Way'
-})
+  '9': 'Other/Unique Properties'
+} as const
