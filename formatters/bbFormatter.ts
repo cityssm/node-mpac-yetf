@@ -1,8 +1,8 @@
-import * as bbLookups from '../lookups/bbLookups.js'
-
-import * as constants from './constants.js'
+import * as lookups from '@cityssm/mpac-tools/codes'
 
 import type * as types from '../types.js'
+
+import * as constants from './constants.js'
 
 export function formatBB(
   recordBB: types.RawYetfRecordBB
@@ -48,7 +48,8 @@ export function formatBB(
     }
   } else if (formattedRecordBB.depth !== '') {
     formattedRecordBB.depthFeet = Number.parseFloat(formattedRecordBB.depth)
-    formattedRecordBB.depthMetres = formattedRecordBB.depthFeet * constants.FEET_TO_METRES
+    formattedRecordBB.depthMetres =
+      formattedRecordBB.depthFeet * constants.FEET_TO_METRES
   }
 
   // Site Improvements
@@ -82,25 +83,25 @@ export function formatBB(
 
   // Property Codes
 
-  const propertyCodeNumber = Number.parseInt(formattedRecordBB.propertyCode)
+  const propertyCodeNumber = Number.parseInt(formattedRecordBB.propertyCode, 10)
 
   formattedRecordBB.propertyCodeClass =
-    bbLookups.propertyCodeClasses[
+    lookups.propertyCodeClassNames[
       propertyCodeNumber - (propertyCodeNumber % 100)
     ]
 
   formattedRecordBB.propertyCodeName =
-    bbLookups.propertyCodeNames[formattedRecordBB.propertyCode]
+    lookups.propertyCodeNames[formattedRecordBB.propertyCode]
 
   // Service Codes
 
   formattedRecordBB.servicesName =
-    bbLookups.serviceCodeNames[formattedRecordBB.services]
+    lookups.serviceCodeNames[formattedRecordBB.services]
 
   // Access Codes
 
   formattedRecordBB.accessName =
-    bbLookups.accessCodeNames[formattedRecordBB.access]
+    lookups.accessCodeNames[formattedRecordBB.access]
 
   return formattedRecordBB
 }

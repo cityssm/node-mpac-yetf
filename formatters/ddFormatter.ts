@@ -1,4 +1,4 @@
-import * as ddLookups from '../lookups/ddLookups.js'
+import * as lookups from '@cityssm/mpac-tools/codes'
 
 import type * as types from '../types.js'
 
@@ -10,12 +10,12 @@ export function formatDD(
   // Texture
 
   formattedRecordDD.textureName =
-    ddLookups.textureCodeNames[formattedRecordDD.texture]
+    lookups.textureCodeNames[formattedRecordDD.texture]
 
   // Soil Class
 
   const soilClass =
-    ddLookups.soilClassPointsRemaining[formattedRecordDD.soilClass]
+    lookups.soilClassPointsRemaining[formattedRecordDD.soilClass]
 
   if (soilClass !== undefined) {
     formattedRecordDD.soilClassPointsRemainingMin = soilClass.min

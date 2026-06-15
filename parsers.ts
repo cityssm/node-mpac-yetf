@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+
 import type * as types from './types.js'
 
 function parseAA(recordAA: types.RawYetfRecordAA, recordString: string): void {
@@ -16,13 +18,11 @@ function parseAA(recordAA: types.RawYetfRecordAA, recordString: string): void {
 }
 
 function parseBB(recordBB: types.RawYetfRecordBB, recordString: string): void {
-  recordBB.frontage =
-    recordString.slice(21, 25).trim() + '.' + recordString.slice(25, 27).trim()
-  recordBB.siteArea =
-    recordString.slice(27, 32).trim() + '.' + recordString.slice(32, 34).trim()
+  recordBB.frontage = `${recordString.slice(21, 25).trim()}.${recordString.slice(25, 27).trim()}`
+
+  recordBB.siteArea = `${recordString.slice(27, 32).trim()}.${recordString.slice(32, 34).trim()}`
   recordBB.unitOfMeasurement = recordString.slice(34, 35).trim()
-  recordBB.depth =
-    recordString.slice(35, 38).trim() + '.' + recordString.slice(38, 40).trim()
+  recordBB.depth = `${recordString.slice(35, 38).trim()}.${recordString.slice(38, 40).trim()}`
   recordBB.siteImprovement = recordString.slice(40, 42).trim()
   recordBB.propertyCode = recordString.slice(42, 45).trim()
   recordBB.zoningUFFI = recordString.slice(45, 52).trim()
@@ -34,8 +34,7 @@ function parseCC(recordCC: types.RawYetfRecordCC, recordString: string): void {
   recordCC.sequenceNumber = recordString.slice(21, 22).trim()
   // filler 22, 24
   recordCC.characterOfConstruction = recordString.slice(24, 27).trim()
-  recordCC.quality =
-    recordString.slice(27, 29) + '.' + recordString.slice(29, 30).trim()
+  recordCC.quality = `${recordString.slice(27, 29).trim()}.${recordString.slice(29, 30).trim()}`
   recordCC.shape = recordString.slice(30, 31).trim()
   recordCC.yearBuilt = recordString.slice(31, 35).trim()
   recordCC.yearBuiltCode = recordString.slice(35, 36).trim()
@@ -61,17 +60,14 @@ function parseCC(recordCC: types.RawYetfRecordCC, recordString: string): void {
 
 function parseDD(recordDD: types.RawYetfRecordDD, recordString: string): void {
   recordDD.sequenceNumber = recordString.slice(21, 22).trim()
-  recordDD.acres =
-    recordString.slice(22, 26).trim() + '.' + recordString.slice(26, 28).trim()
+  recordDD.acres = `${recordString.slice(22, 26).trim()}.${recordString.slice(26, 28).trim()}`
   recordDD.texture = recordString.slice(28, 29).trim()
   recordDD.soilClass = recordString.slice(29, 30).trim()
   recordDD.tiling = recordString.slice(30, 31).trim()
   recordDD.climaticZone = recordString.slice(31, 32).trim()
-  recordDD.woodedAcreage =
-    recordString.slice(32, 36).trim() + '.' + recordString.slice(36, 38).trim()
+  recordDD.woodedAcreage = `${recordString.slice(32, 36).trim()}.${recordString.slice(36, 38).trim()}`
   // filler 38, 43
-  recordDD.orchardAcreage =
-    recordString.slice(43, 47).trim() + '.' + recordString.slice(47, 49).trim()
+  recordDD.orchardAcreage = `${recordString.slice(43, 47).trim()}.${recordString.slice(47, 49).trim()}`
 }
 
 function parseGG(recordGG: types.RawYetfRecordGG, recordString: string): void {

@@ -1,4 +1,4 @@
-import * as paLookups from '../lookups/paLookups.js'
+import * as lookups from '@cityssm/mpac-tools/codes'
 
 import type * as types from '../types.js'
 
@@ -15,17 +15,17 @@ export function formatPA(
   // Unit Class
 
   formattedYetfRecordPA.unitClassDescription =
-    paLookups.unitClassDescriptions[formattedYetfRecordPA.unitClass]
+    lookups.unitClassDescriptions[formattedYetfRecordPA.unitClass]
 
   // Realty Tax Class
 
   formattedYetfRecordPA.realtyTaxClassName =
-    paLookups.realtyTaxClassNames[formattedYetfRecordPA.realtyTaxClass]
+    lookups.realtyTaxClassNames[formattedYetfRecordPA.realtyTaxClass]
 
   // Realty Tax Qualifer
 
   const realtyTaxQualifier =
-    paLookups.realtyTaxQualifiers[formattedYetfRecordPA.realtyTaxQualifier]
+    lookups.realtyTaxQualifiers[formattedYetfRecordPA.realtyTaxQualifier]
 
   if (realtyTaxQualifier !== undefined) {
     formattedYetfRecordPA.realtyTaxQualifierClass = realtyTaxQualifier.class
@@ -42,12 +42,12 @@ export function formatPA(
   // Unit Support
 
   formattedYetfRecordPA.unitSupportName =
-    paLookups.unitSupportNames[formattedYetfRecordPA.unitSupport]
+    lookups.unitSupportNames[formattedYetfRecordPA.unitSupport]
 
   // Property Type
 
   formattedYetfRecordPA.propertyTypeName =
-    paLookups.propertyTypeNames[formattedYetfRecordPA.propertyType]
+    lookups.propertyTypeNames[formattedYetfRecordPA.propertyType]
 
   // Property Total
 

@@ -20,5 +20,11 @@ interface ParseYetfOptions {
         PI?: (record: types.FormattedYetfRecordPI | types.RawYetfRecordPI, lineNumber?: number) => void;
     };
 }
+/**
+ * Parses a YETF file line-by-line, calling the appropriate callback for each record type.
+ * @param filePath - Path to the YETF file
+ * @param options - Parsing options
+ * @returns Promise which resolves to `true` when parsing is complete
+ */
 export declare function parseYetf(filePath: string, options: ParseYetfOptions): Promise<boolean>;
 export default parseYetf;

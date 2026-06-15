@@ -1,4 +1,4 @@
-import * as ccLookups from '../lookups/ccLookups.js'
+import * as lookups from '@cityssm/mpac-tools/codes'
 
 import type * as types from '../types.js'
 
@@ -10,7 +10,7 @@ export function formatCC(
   // Character of Construction
 
   const characterOfConstruction =
-    ccLookups.characterOfConstructionDescriptions[
+    lookups.characterOfConstructionDescriptions[
       formattedRecordCC.characterOfConstruction
     ]
 
@@ -34,17 +34,19 @@ export function formatCC(
   // Quality
 
   if (formattedRecordCC.quality !== '') {
-    formattedRecordCC.qualityOutOf10 = Number.parseFloat(formattedRecordCC.quality)
+    formattedRecordCC.qualityOutOf10 = Number.parseFloat(
+      formattedRecordCC.quality
+    )
   }
 
   // Year Built Code
 
   formattedRecordCC.yearBuiltCodeName =
-    ccLookups.yearBuiltCodeNames[formattedRecordCC.yearBuiltCode]
+    lookups.yearBuiltCodeNames[formattedRecordCC.yearBuiltCode]
 
   // Condition Code
 
-  const condition = ccLookups.conditionCodes[formattedRecordCC.condition]
+  const condition = lookups.conditionCodes[formattedRecordCC.condition]
 
   if (condition !== undefined) {
     formattedRecordCC.conditionName = condition.name
@@ -54,7 +56,7 @@ export function formatCC(
   // Part Storey Code
 
   formattedRecordCC.partStoreysName =
-    ccLookups.partStoreyCodeNames[formattedRecordCC.partStoreys]
+    lookups.partStoreyCodeNames[formattedRecordCC.partStoreys]
 
   // Height / Effective Year Built
 
@@ -77,8 +79,7 @@ export function formatCC(
 
   // Split Code
 
-  formattedRecordCC.splitName =
-    ccLookups.splitCodeNames[formattedRecordCC.split]
+  formattedRecordCC.splitName = lookups.splitCodeNames[formattedRecordCC.split]
 
   // Gross Area
 
@@ -91,7 +92,8 @@ export function formatCC(
 
   if (formattedRecordCC.totalBasementArea !== '') {
     formattedRecordCC.totalBasementAreaSquareFeet = Number.parseInt(
-      formattedRecordCC.totalBasementArea
+      formattedRecordCC.totalBasementArea,
+      10
     )
   }
 
@@ -102,27 +104,27 @@ export function formatCC(
   }
 
   formattedRecordCC.basementFinishName =
-    ccLookups.basementFinishCodeNames[formattedRecordCC.basementFinish]
+    lookups.basementFinishCodeNames[formattedRecordCC.basementFinish]
 
   // Heating Type
 
   formattedRecordCC.heatingTypeName =
-    ccLookups.heatingTypeCodeNames[formattedRecordCC.heatingType]
+    lookups.heatingTypeCodeNames[formattedRecordCC.heatingType]
 
   // Garage Type
 
   formattedRecordCC.garageTypeName =
-    ccLookups.garageTypeCodeNames[formattedRecordCC.garageType]
+    lookups.garageTypeCodeNames[formattedRecordCC.garageType]
 
   // Structure Code
 
-  const structureCode = Number.parseInt(formattedRecordCC.structureCode)
+  const structureCode = Number.parseInt(formattedRecordCC.structureCode, 10)
 
   formattedRecordCC.structureCodeClass =
-    ccLookups.structureCodeClasses[structureCode - (structureCode % 100)]
+    lookups.structureCodeClasses[structureCode - (structureCode % 100)]
 
   formattedRecordCC.structureCodeName =
-    ccLookups.structureCodeNames[formattedRecordCC.structureCode]
+    lookups.structureCodeNames[formattedRecordCC.structureCode]
 
   return formattedRecordCC
 }

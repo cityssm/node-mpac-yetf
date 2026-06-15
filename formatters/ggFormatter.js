@@ -1,15 +1,20 @@
-import * as ggLookups from '../lookups/ggLookups.js';
+import * as lookups from '@cityssm/mpac-tools/codes';
 export function formatGG(recordGG) {
     const formattedYetfRecordGG = recordGG;
+    // Identifier
     formattedYetfRecordGG.identifierName =
-        ggLookups.identifierNames[formattedYetfRecordGG.identifier];
+        lookups.identifierNames[formattedYetfRecordGG.identifier];
+    // Occupancy Status
     formattedYetfRecordGG.occupancyStatusName =
-        ggLookups.occupancyStatusNames[formattedYetfRecordGG.occupancyStatus];
+        lookups.occupancyStatusNames[formattedYetfRecordGG.occupancyStatus];
+    // School Support
     formattedYetfRecordGG.schoolSupportName =
-        ggLookups.schoolSupportNames[formattedYetfRecordGG.schoolSupport];
+        lookups.schoolSupportNames[formattedYetfRecordGG.schoolSupport];
+    // Residency Code
     formattedYetfRecordGG.residencyCodeDescription =
-        ggLookups.residencyCodeDescriptions[formattedYetfRecordGG.residencyCode];
+        lookups.residencyCodeDescriptions[formattedYetfRecordGG.residencyCode];
+    // Month of Birth
     formattedYetfRecordGG.monthOfBirthName =
-        ggLookups.monthOfBirthNames[formattedYetfRecordGG.monthOfBirth];
+        lookups.monthOfBirthNames[formattedYetfRecordGG.monthOfBirth];
     return formattedYetfRecordGG;
 }

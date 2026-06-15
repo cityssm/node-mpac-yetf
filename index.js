@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-type-assertion */
 import events from 'node:events';
 import fs from 'node:fs';
 import readline from 'node:readline';
@@ -13,8 +14,15 @@ import { formatPC } from './formatters/pcFormatter.js';
 import { formatPD } from './formatters/pdFormatter.js';
 import { formatPI } from './formatters/piFormatter.js';
 import { parseYetfRecordString } from './parsers.js';
+/**
+ * Parses a YETF file line-by-line, calling the appropriate callback for each record type.
+ * @param filePath - Path to the YETF file
+ * @param options - Parsing options
+ * @returns Promise which resolves to `true` when parsing is complete
+ */
 export async function parseYetf(filePath, options) {
     const rl = readline.createInterface({
+        // eslint-disable-next-line security/detect-non-literal-fs-filename
         input: fs.createReadStream(filePath)
     });
     let lineNumber = 0;
@@ -86,6 +94,7 @@ export async function parseYetf(filePath, options) {
                     break;
                 }
                 default: {
+                    // No formatting available
                     break;
                 }
             }

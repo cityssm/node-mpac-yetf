@@ -1,7 +1,7 @@
 import eslintConfigCityssm, {
-  cspellWords,
   defineConfig
-} from 'eslint-config-cityssm'
+} from 'eslint-config-cityssm/eslint.packageConfig.js'
+import { cspellWords } from 'eslint-config-cityssm/exports.js'
 
 const config = defineConfig(eslintConfigCityssm, {
   files: ['**/*.ts'],
@@ -10,11 +10,7 @@ const config = defineConfig(eslintConfigCityssm, {
       'warn',
       {
         cspell: {
-          words: [
-            ...cspellWords,
-            'mpac',
-            'yetf'
-          ]
+          words: [...cspellWords, 'mpac', 'uffi', 'yetf']
         }
       }
     ]

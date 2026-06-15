@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as assert from 'node:assert'
 import { describe, it } from 'node:test'
 
@@ -12,9 +13,13 @@ await describe('parseYetf', async () => {
         all: (record, lineNumber) => {
           recordCount += 1
           assert.strictEqual(recordCount, lineNumber)
-          assert.ok(record.rollNumber !== undefined && record.rollNumber !== '')
-          assert.ok(
-            (record as FormattedYetfRecord).rollNumberCounty === undefined
+
+          assert.notStrictEqual(record.rollNumber, undefined)
+          assert.notStrictEqual(record.rollNumber, '')
+
+          assert.strictEqual(
+            (record as FormattedYetfRecord).rollNumberCounty,
+            undefined
           )
         }
       }
@@ -31,12 +36,18 @@ await describe('parseYetf', async () => {
       callbacks: {
         all: (record) => {
           recordCount += 1
-          assert.ok(record.rollNumber !== undefined && record.rollNumber !== '')
-          assert.ok(
-            (record as FormattedYetfRecord).rollNumberCounty !== undefined &&
-              (record as FormattedYetfRecord).rollNumberCounty !== ''
+          assert.notStrictEqual(record.rollNumber, undefined)
+          assert.notStrictEqual(record.rollNumber, '')
+          assert.notStrictEqual(
+            (record as FormattedYetfRecord).rollNumberCounty,
+            undefined
+          )
+          assert.notStrictEqual(
+            (record as FormattedYetfRecord).rollNumberCounty,
+            ''
           )
         },
+
         AA: (record) => {
           console.log(record)
         },

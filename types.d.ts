@@ -1,8 +1,4 @@
-import type * as bbLookups from './lookups/bbLookups.js';
-import type * as ccLookups from './lookups/ccLookups.js';
-import type * as ddLookups from './lookups/ddLookups.js';
-import type * as ggLookups from './lookups/ggLookups.js';
-import type * as paLookups from './lookups/paLookups.js';
+import type * as lookups from '@cityssm/mpac-tools/codes';
 export type RecordType = 'AA' | 'BB' | 'CC' | 'DD' | 'GG' | 'HH' | 'JJ' | 'KK' | 'LL' | 'MM' | 'PA' | 'PB' | 'PC' | 'PD' | 'PI';
 export interface RawYetfRecord {
     rollNumber: string;
@@ -20,6 +16,10 @@ export interface FormattedYetfRecord extends RawYetfRecord {
     rollNumberPrimarySubordinate: string;
     rollNumberIsPrimary: boolean;
 }
+/**
+ * AA Record
+ * - Roll Entry Creation
+ */
 export interface RawYetfRecordAA extends RawYetfRecord {
     recordType: 'AA';
     ward: string;
@@ -34,7 +34,11 @@ export interface RawYetfRecordAA extends RawYetfRecord {
     frenchPublicSchoolCode: string;
     frenchSeparateSchoolCode: string;
 }
-export interface FormattedYetfRecordAA extends RawYetfRecordAA, FormattedYetfRecord {
+/**
+ * AA Record
+ * - Roll Entry Creation
+ */
+export interface FormattedYetfRecordAA extends FormattedYetfRecord, RawYetfRecordAA {
     recordType: 'AA';
     pollSuffix: '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
     highSchoolCode: '00' | '01';
@@ -43,6 +47,10 @@ export interface FormattedYetfRecordAA extends RawYetfRecordAA, FormattedYetfRec
     frenchPublicSchoolCode: '00' | '01';
     frenchSeparateSchoolCode: '00' | '01';
 }
+/**
+ * BB Record
+ * - Property Data
+ */
 export interface RawYetfRecordBB extends RawYetfRecord {
     recordType: 'BB';
     frontage: string;
@@ -55,13 +63,17 @@ export interface RawYetfRecordBB extends RawYetfRecord {
     services: string;
     access: string;
 }
-export interface FormattedYetfRecordBB extends RawYetfRecordBB, FormattedYetfRecord {
+/**
+ * BB Record
+ * - Property Data
+ */
+export interface FormattedYetfRecordBB extends FormattedYetfRecord, RawYetfRecordBB {
     recordType: 'BB';
     frontageFeet?: number;
     frontageMetres?: number;
     siteAreaSquareFeet?: number;
     siteAreaAcres?: number;
-    unitOfMeasurement: '' | 'N' | 'F' | 'A';
+    unitOfMeasurement: '' | 'A' | 'F' | 'N';
     depthFeet?: number;
     depthMetres?: number;
     farmForestryExemptionAcres?: number;
@@ -75,13 +87,17 @@ export interface FormattedYetfRecordBB extends RawYetfRecordBB, FormattedYetfRec
     siteImprovementHasMultiple: boolean;
     siteImprovementHasTennisCourts: boolean;
     propertyCode: string;
-    propertyCodeClass?: typeof bbLookups.propertyCodeClasses[keyof typeof bbLookups.propertyCodeClasses];
+    propertyCodeClass?: (typeof lookups.propertyCodeClassNames)[keyof typeof lookups.propertyCodeClassNames];
     propertyCodeName?: string;
-    services: '' | keyof typeof bbLookups.serviceCodeNames;
-    servicesName?: typeof bbLookups.serviceCodeNames[keyof typeof bbLookups.serviceCodeNames];
-    access: '' | keyof typeof bbLookups.accessCodeNames;
-    accessName?: typeof bbLookups.accessCodeNames[keyof typeof bbLookups.accessCodeNames];
+    services: '' | keyof typeof lookups.serviceCodeNames;
+    servicesName?: (typeof lookups.serviceCodeNames)[keyof typeof lookups.serviceCodeNames];
+    access: '' | keyof typeof lookups.accessCodeNames;
+    accessName?: (typeof lookups.accessCodeNames)[keyof typeof lookups.accessCodeNames];
 }
+/**
+ * CC Record
+ * - Structure Data
+ */
 export interface RawYetfRecordCC extends RawYetfRecord {
     recordType: 'CC';
     sequenceNumber: string;
@@ -109,9 +125,13 @@ export interface RawYetfRecordCC extends RawYetfRecord {
     garageSpaces: string;
     structureCode: string;
 }
-export interface FormattedYetfRecordCC extends RawYetfRecordCC, FormattedYetfRecord {
+/**
+ * CC Record
+ * - Structure Data
+ */
+export interface FormattedYetfRecordCC extends FormattedYetfRecord, RawYetfRecordCC {
     recordType: 'CC';
-    characterOfConstruction: '' | keyof typeof ccLookups.characterOfConstructionDescriptions;
+    characterOfConstruction: '' | keyof typeof lookups.characterOfConstructionDescriptions;
     characterOfConstructionDescription?: string;
     characterOfConstructionFramingDescription?: string;
     characterOfConstructionFloorDescription?: string;
@@ -119,30 +139,34 @@ export interface FormattedYetfRecordCC extends RawYetfRecordCC, FormattedYetfRec
     characterOfConstructionWallsDescription?: string;
     qualityOutOf10?: number;
     shape: '' | 'A' | 'B' | 'C' | 'D' | 'N';
-    yearBuiltCode: '' | keyof typeof ccLookups.yearBuiltCodeNames;
-    yearBuiltCodeName?: typeof ccLookups.yearBuiltCodeNames[keyof typeof ccLookups.yearBuiltCodeNames];
-    condition: '' | keyof typeof ccLookups.conditionCodes;
+    yearBuiltCode: '' | keyof typeof lookups.yearBuiltCodeNames;
+    yearBuiltCodeName?: (typeof lookups.yearBuiltCodeNames)[keyof typeof lookups.yearBuiltCodeNames];
+    condition: '' | keyof typeof lookups.conditionCodes;
     conditionName?: string;
     conditionRankingOutOf5?: number;
-    partStoreys: '' | keyof typeof ccLookups.partStoreyCodeNames;
-    partStoreysName?: typeof ccLookups.partStoreyCodeNames[keyof typeof ccLookups.partStoreyCodeNames];
+    partStoreys: '' | keyof typeof lookups.partStoreyCodeNames;
+    partStoreysName?: (typeof lookups.partStoreyCodeNames)[keyof typeof lookups.partStoreyCodeNames];
     heightFeet?: number;
     effectiveYearBuilt?: number;
-    split: '' | keyof typeof ccLookups.splitCodeNames;
-    splitName?: typeof ccLookups.splitCodeNames[keyof typeof ccLookups.splitCodeNames];
+    split: '' | keyof typeof lookups.splitCodeNames;
+    splitName?: (typeof lookups.splitCodeNames)[keyof typeof lookups.splitCodeNames];
     grossAreaSquareFeet?: number;
     totalBasementAreaSquareFeet?: number;
     finishedBasementAreaSquareFeet?: number;
-    basementFinish: '' | keyof typeof ccLookups.basementFinishCodeNames;
-    basementFinishName?: typeof ccLookups.basementFinishCodeNames[keyof typeof ccLookups.basementFinishCodeNames];
-    heatingType: '' | keyof typeof ccLookups.heatingTypeCodeNames;
-    heatingTypeName?: typeof ccLookups.heatingTypeCodeNames[keyof typeof ccLookups.heatingTypeCodeNames];
-    garageType: '' | keyof typeof ccLookups.garageTypeCodeNames;
-    garageTypeName?: typeof ccLookups.garageTypeCodeNames[keyof typeof ccLookups.garageTypeCodeNames];
+    basementFinish: '' | keyof typeof lookups.basementFinishCodeNames;
+    basementFinishName?: (typeof lookups.basementFinishCodeNames)[keyof typeof lookups.basementFinishCodeNames];
+    heatingType: '' | keyof typeof lookups.heatingTypeCodeNames;
+    heatingTypeName?: (typeof lookups.heatingTypeCodeNames)[keyof typeof lookups.heatingTypeCodeNames];
+    garageType: '' | keyof typeof lookups.garageTypeCodeNames;
+    garageTypeName?: (typeof lookups.garageTypeCodeNames)[keyof typeof lookups.garageTypeCodeNames];
     structureCode: string;
-    structureCodeClass?: typeof ccLookups.structureCodeClasses[keyof typeof ccLookups.structureCodeClasses];
+    structureCodeClass?: (typeof lookups.structureCodeClasses)[keyof typeof lookups.structureCodeClasses];
     structureCodeName?: string;
 }
+/**
+ * DD Record
+ * - Land Data
+ */
 export interface RawYetfRecordDD extends RawYetfRecord {
     recordType: 'DD';
     sequenceNumber: string;
@@ -154,14 +178,22 @@ export interface RawYetfRecordDD extends RawYetfRecord {
     woodedAcreage: string;
     orchardAcreage: string;
 }
-export interface FormattedYetfRecordDD extends RawYetfRecordDD, FormattedYetfRecord {
+/**
+ * DD Record
+ * - Land Data
+ */
+export interface FormattedYetfRecordDD extends FormattedYetfRecord, RawYetfRecordDD {
     recordType: 'DD';
-    texture: '' | keyof typeof ddLookups.textureCodeNames;
-    textureName?: typeof ddLookups.textureCodeNames[keyof typeof ddLookups.textureCodeNames];
-    soilClass: '' | keyof typeof ddLookups.soilClassPointsRemaining;
+    texture: '' | keyof typeof lookups.textureCodeNames;
+    textureName?: (typeof lookups.textureCodeNames)[keyof typeof lookups.textureCodeNames];
+    soilClass: '' | keyof typeof lookups.soilClassPointsRemaining;
     soilClassPointsRemainingMin?: number;
     soilClassPointsRemainingMax?: number;
 }
+/**
+ * GG Record
+ * - Name Data
+ */
 export interface RawYetfRecordGG extends RawYetfRecord {
     recordType: 'GG';
     sequenceNumber: string;
@@ -177,36 +209,60 @@ export interface RawYetfRecordGG extends RawYetfRecord {
     monthOfBirth: string;
     frenchLanguageEducationRights: string;
 }
-export interface FormattedYetfRecordGG extends RawYetfRecordGG, FormattedYetfRecord {
+/**
+ * GG Record
+ * - Name Data
+ */
+export interface FormattedYetfRecordGG extends FormattedYetfRecord, RawYetfRecordGG {
     recordType: 'GG';
-    identifier: '' | keyof typeof ggLookups.identifierNames;
+    identifier: '' | keyof typeof lookups.identifierNames;
     identifierName?: string;
-    occupancyStatus: '' | keyof typeof ggLookups.occupancyStatusNames;
+    occupancyStatus: '' | keyof typeof lookups.occupancyStatusNames;
     occupancyStatusName?: string;
-    schoolSupport: '' | keyof typeof ggLookups.schoolSupportNames;
+    schoolSupport: '' | keyof typeof lookups.schoolSupportNames;
     schoolSupportName?: string;
-    residencyCode: '' | keyof typeof ggLookups.residencyCodeDescriptions;
+    residencyCode: '' | keyof typeof lookups.residencyCodeDescriptions;
     residencyCodeDescription?: string;
-    monthOfBirth: '' | keyof typeof ggLookups.monthOfBirthNames;
-    monthOfBirthName?: typeof ggLookups.monthOfBirthNames[keyof typeof ggLookups.monthOfBirthNames];
+    monthOfBirth: '' | keyof typeof lookups.monthOfBirthNames;
+    monthOfBirthName?: (typeof lookups.monthOfBirthNames)[keyof typeof lookups.monthOfBirthNames];
 }
+/**
+ * HH Record
+ * - Mailing Address
+ */
 export interface RawYetfRecordHH extends RawYetfRecord {
     recordType: 'HH';
     sequenceNumber: string;
     mailingAddress: string;
 }
-export interface FormattedYetfRecordHH extends RawYetfRecordHH, FormattedYetfRecord {
+/**
+ * HH Record
+ * - Mailing Address
+ */
+export interface FormattedYetfRecordHH extends FormattedYetfRecord, RawYetfRecordHH {
     recordType: 'HH';
     sequenceNumber: '1' | '2' | '3';
 }
+/**
+ * JJ Record
+ * - City/Province Mailing Address
+ */
 export interface RawYetfRecordJJ extends RawYetfRecord {
     recordType: 'JJ';
     cityProvinceCountry: string;
     postalCode: string;
 }
-export interface FormattedYetfRecordJJ extends RawYetfRecordJJ, FormattedYetfRecord {
+/**
+ * JJ Record
+ * - City/Province Mailing Address
+ */
+export interface FormattedYetfRecordJJ extends FormattedYetfRecord, RawYetfRecordJJ {
     recordType: 'JJ';
 }
+/**
+ * KK Record
+ * - Property Location
+ */
 export interface RawYetfRecordKK extends RawYetfRecord {
     recordType: 'KK';
     streetNumber: string;
@@ -215,28 +271,52 @@ export interface RawYetfRecordKK extends RawYetfRecord {
     streetName: string;
     unitNumber: string;
 }
-export interface FormattedYetfRecordKK extends RawYetfRecordKK, FormattedYetfRecord {
+/**
+ * KK Record
+ * - Property Location
+ */
+export interface FormattedYetfRecordKK extends FormattedYetfRecord, RawYetfRecordKK {
     recordType: 'KK';
     civicAddress?: string;
 }
+/**
+ * LL Record
+ * - Legal Description
+ */
 export interface RawYetfRecordLL extends RawYetfRecord {
     recordType: 'LL';
     sequenceNumber: string;
     legalDescription: string;
 }
-export interface FormattedYetfRecordLL extends RawYetfRecordLL, FormattedYetfRecord {
+/**
+ * LL Record
+ * - Legal Description
+ */
+export interface FormattedYetfRecordLL extends FormattedYetfRecord, RawYetfRecordLL {
     recordType: 'LL';
     sequenceNumber: '1' | '2' | '3' | '4' | '5';
 }
+/**
+ * MM Record
+ * - Comments and Site Dimensions
+ */
 export interface RawYetfRecordMM extends RawYetfRecord {
     recordType: 'MM';
     sequenceNumber: string;
     commentsSiteDimensions: string;
 }
-export interface FormattedYetfRecordMM extends RawYetfRecordMM, FormattedYetfRecord {
+/**
+ * MM Record
+ * - Comments and Site Dimensions
+ */
+export interface FormattedYetfRecordMM extends FormattedYetfRecord, RawYetfRecordMM {
     recordType: 'MM';
     sequenceNumber: '1' | '2' | '3' | '4' | '5';
 }
+/**
+ * PA Record
+ * - Assessment Control
+ */
 export interface RawYetfRecordPA extends RawYetfRecord {
     recordType: 'PA';
     sequenceNumber: string;
@@ -254,24 +334,32 @@ export interface RawYetfRecordPA extends RawYetfRecord {
     propertyTotal: string;
     realtyPortionTotal: string;
 }
-export interface FormattedYetfRecordPA extends RawYetfRecordPA, FormattedYetfRecord {
+/**
+ * PA Record
+ * - Assessment Control
+ */
+export interface FormattedYetfRecordPA extends FormattedYetfRecord, RawYetfRecordPA {
     recordType: 'PA';
     phaseInValueDollars: number;
-    unitClass: '' | keyof typeof paLookups.unitClassDescriptions;
-    unitClassDescription?: typeof paLookups.unitClassDescriptions[keyof typeof paLookups.unitClassDescriptions];
-    realtyTaxClass: '' | keyof typeof paLookups.realtyTaxClassNames;
-    realtyTaxClassName?: typeof paLookups.realtyTaxClassNames[keyof typeof paLookups.realtyTaxClassNames];
-    realtyTaxQualifier: '' | keyof typeof paLookups.realtyTaxQualifiers;
-    realtyTaxQualifierClass?: 'Taxable' | 'Payment in Lieu';
+    unitClass: '' | keyof typeof lookups.unitClassDescriptions;
+    unitClassDescription?: (typeof lookups.unitClassDescriptions)[keyof typeof lookups.unitClassDescriptions];
+    realtyTaxClass: '' | keyof typeof lookups.realtyTaxClassNames;
+    realtyTaxClassName?: (typeof lookups.realtyTaxClassNames)[keyof typeof lookups.realtyTaxClassNames];
+    realtyTaxQualifier: '' | keyof typeof lookups.realtyTaxQualifiers;
+    realtyTaxQualifierClass?: 'Payment in Lieu' | 'Taxable';
     realtyTaxQualifierName?: string;
     previousYearAssessmentDollars: number;
-    unitSupport: '' | keyof typeof paLookups.unitSupportNames;
-    unitSupportName?: typeof paLookups.unitSupportNames[keyof typeof paLookups.unitSupportNames];
-    propertyType: '' | keyof typeof paLookups.propertyTypeNames;
-    propertyTypeName?: typeof paLookups.propertyTypeNames[keyof typeof paLookups.propertyTypeNames];
+    unitSupport: '' | keyof typeof lookups.unitSupportNames;
+    unitSupportName?: (typeof lookups.unitSupportNames)[keyof typeof lookups.unitSupportNames];
+    propertyType: '' | keyof typeof lookups.propertyTypeNames;
+    propertyTypeName?: (typeof lookups.propertyTypeNames)[keyof typeof lookups.propertyTypeNames];
     propertyTotalDollars: number;
     realtyPortionTotalDollars: number;
 }
+/**
+ * PB Record
+ * - Assessment Value English Public, English Separate, No School Support
+ */
 export interface RawYetfRecordPB extends RawYetfRecord {
     recordType: 'PB';
     sequenceNumber: string;
@@ -279,42 +367,70 @@ export interface RawYetfRecordPB extends RawYetfRecord {
     realtyPortionEnglishSeparate: string;
     realtyPortionNoSupport: string;
 }
-export interface FormattedYetfRecordPB extends RawYetfRecordPB, FormattedYetfRecord {
+/**
+ * PB Record
+ * - Assessment Value English Public, English Separate, No School Support
+ */
+export interface FormattedYetfRecordPB extends FormattedYetfRecord, RawYetfRecordPB {
     recordType: 'PB';
     sequenceNumber: '1';
     realtyPortionEnglishPublicDollars: number;
     realtyPortionEnglishSeparateDollars: number;
     realtyPortionNoSupportDollars: number;
 }
+/**
+ * PC Record
+ * - Assessment Value French Public, French Separate School Support
+ */
 export interface RawYetfRecordPC extends RawYetfRecord {
     recordType: 'PC';
     sequenceNumber: string;
     realtyPortionFrenchPublic: string;
     realtyPortionFrenchSeparate: string;
 }
-export interface FormattedYetfRecordPC extends RawYetfRecordPC, FormattedYetfRecord {
+/**
+ * PC Record
+ * - Assessment Value French Public, French Separate School Support
+ */
+export interface FormattedYetfRecordPC extends FormattedYetfRecord, RawYetfRecordPC {
     recordType: 'PC';
     sequenceNumber: '1';
     realtyPortionFrenchPublicDollars: number;
     realtyPortionFrenchSeparateDollars: number;
 }
+/**
+ * PD Record
+ * - Assessment Value Protestant Separate School Support
+ */
 export interface RawYetfRecordPD extends RawYetfRecord {
     recordType: 'PD';
     sequenceNumber: string;
     realtyPortionProtestantSeparate: string;
 }
-export interface FormattedYetfRecordPD extends RawYetfRecordPD, FormattedYetfRecord {
+/**
+ * PD Record
+ * - Assessment Value Protestant Separate School Support
+ */
+export interface FormattedYetfRecordPD extends FormattedYetfRecord, RawYetfRecordPD {
     recordType: 'PD';
     sequenceNumber: '1';
     realtyPortionProtestantSeparateDollars: number;
 }
+/**
+ * PI Record
+ * - Phase-In
+ */
 export interface RawYetfRecordPI extends RawYetfRecord {
     recordType: 'PI';
     phaseInStartingPoint: string;
     phaseInValue: string;
     phaseInDestinationValue: string;
 }
-export interface FormattedYetfRecordPI extends RawYetfRecordPI, FormattedYetfRecord {
+/**
+ * PI Record
+ * - Phase-In
+ */
+export interface FormattedYetfRecordPI extends FormattedYetfRecord, RawYetfRecordPI {
     recordType: 'PI';
     phaseInStartingPointDollars: number;
     phaseInValueDollars: number;

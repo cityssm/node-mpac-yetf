@@ -17,7 +17,9 @@ This project takes an MPAC YETF and parses it into usable objects.
 
 ## Installation
 
-    npm install @cityssm/mpac-yetf
+```sh
+npm install @cityssm/mpac-yetf
+```
 
 ## Usage
 

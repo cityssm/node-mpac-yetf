@@ -1,12 +1,14 @@
-import * as bbLookups from '../lookups/bbLookups.js';
+import * as lookups from '@cityssm/mpac-tools/codes';
 import * as constants from './constants.js';
 export function formatBB(recordBB) {
     const formattedRecordBB = recordBB;
+    // Frontage
     if (formattedRecordBB.frontage !== '') {
         formattedRecordBB.frontageFeet = Number.parseFloat(formattedRecordBB.frontage);
         formattedRecordBB.frontageMetres =
             formattedRecordBB.frontageFeet * constants.FEET_TO_METRES;
     }
+    // Site Area
     if (formattedRecordBB.unitOfMeasurement === 'F') {
         formattedRecordBB.siteAreaSquareFeet = Number.parseFloat(formattedRecordBB.siteArea);
         formattedRecordBB.siteAreaAcres =
@@ -17,6 +19,7 @@ export function formatBB(recordBB) {
         formattedRecordBB.siteAreaSquareFeet =
             formattedRecordBB.siteAreaAcres * constants.ACRES_TO_SQUARE_FEET;
     }
+    // Depth or Farm Forestry Exemption
     if (formattedRecordBB.propertyCode >= '200' &&
         formattedRecordBB.propertyCode <= '299') {
         if (formattedRecordBB.depth !== '') {
@@ -25,8 +28,10 @@ export function formatBB(recordBB) {
     }
     else if (formattedRecordBB.depth !== '') {
         formattedRecordBB.depthFeet = Number.parseFloat(formattedRecordBB.depth);
-        formattedRecordBB.depthMetres = formattedRecordBB.depthFeet * constants.FEET_TO_METRES;
+        formattedRecordBB.depthMetres =
+            formattedRecordBB.depthFeet * constants.FEET_TO_METRES;
     }
+    // Site Improvements
     formattedRecordBB.siteImprovementHasBoathouse =
         formattedRecordBB.siteImprovement.includes('B');
     formattedRecordBB.siteImprovementHasSiteImprovements =
@@ -45,14 +50,17 @@ export function formatBB(recordBB) {
         formattedRecordBB.siteImprovement.includes('M');
     formattedRecordBB.siteImprovementHasTennisCourts =
         formattedRecordBB.siteImprovement.includes('T');
-    const propertyCodeNumber = Number.parseInt(formattedRecordBB.propertyCode);
+    // Property Codes
+    const propertyCodeNumber = Number.parseInt(formattedRecordBB.propertyCode, 10);
     formattedRecordBB.propertyCodeClass =
-        bbLookups.propertyCodeClasses[propertyCodeNumber - (propertyCodeNumber % 100)];
+        lookups.propertyCodeClassNames[propertyCodeNumber - (propertyCodeNumber % 100)];
     formattedRecordBB.propertyCodeName =
-        bbLookups.propertyCodeNames[formattedRecordBB.propertyCode];
+        lookups.propertyCodeNames[formattedRecordBB.propertyCode];
+    // Service Codes
     formattedRecordBB.servicesName =
-        bbLookups.serviceCodeNames[formattedRecordBB.services];
+        lookups.serviceCodeNames[formattedRecordBB.services];
+    // Access Codes
     formattedRecordBB.accessName =
-        bbLookups.accessCodeNames[formattedRecordBB.access];
+        lookups.accessCodeNames[formattedRecordBB.access];
     return formattedRecordBB;
 }

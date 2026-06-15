@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 function parseAA(recordAA, recordString) {
     recordAA.ward = recordString.slice(21, 23).trim();
     recordAA.poll = recordString.slice(23, 26).trim();
@@ -7,18 +8,16 @@ function parseAA(recordAA, recordString) {
     recordAA.separateSchoolCode = recordString.slice(31, 33).trim();
     recordAA.specialRateArea = recordString.slice(33, 39).trim();
     recordAA.pacCode = recordString.slice(39, 42).trim();
+    // filler 42, 48
     recordAA.previousRollNumber = recordString.slice(48, 67).trim();
     recordAA.frenchPublicSchoolCode = recordString.slice(67, 69).trim();
     recordAA.frenchSeparateSchoolCode = recordString.slice(69, 71).trim();
 }
 function parseBB(recordBB, recordString) {
-    recordBB.frontage =
-        recordString.slice(21, 25).trim() + '.' + recordString.slice(25, 27).trim();
-    recordBB.siteArea =
-        recordString.slice(27, 32).trim() + '.' + recordString.slice(32, 34).trim();
+    recordBB.frontage = `${recordString.slice(21, 25).trim()}.${recordString.slice(25, 27).trim()}`;
+    recordBB.siteArea = `${recordString.slice(27, 32).trim()}.${recordString.slice(32, 34).trim()}`;
     recordBB.unitOfMeasurement = recordString.slice(34, 35).trim();
-    recordBB.depth =
-        recordString.slice(35, 38).trim() + '.' + recordString.slice(38, 40).trim();
+    recordBB.depth = `${recordString.slice(35, 38).trim()}.${recordString.slice(38, 40).trim()}`;
     recordBB.siteImprovement = recordString.slice(40, 42).trim();
     recordBB.propertyCode = recordString.slice(42, 45).trim();
     recordBB.zoningUFFI = recordString.slice(45, 52).trim();
@@ -27,9 +26,9 @@ function parseBB(recordBB, recordString) {
 }
 function parseCC(recordCC, recordString) {
     recordCC.sequenceNumber = recordString.slice(21, 22).trim();
+    // filler 22, 24
     recordCC.characterOfConstruction = recordString.slice(24, 27).trim();
-    recordCC.quality =
-        recordString.slice(27, 29) + '.' + recordString.slice(29, 30).trim();
+    recordCC.quality = `${recordString.slice(27, 29).trim()}.${recordString.slice(29, 30).trim()}`;
     recordCC.shape = recordString.slice(30, 31).trim();
     recordCC.yearBuilt = recordString.slice(31, 35).trim();
     recordCC.yearBuiltCode = recordString.slice(35, 36).trim();
@@ -54,18 +53,17 @@ function parseCC(recordCC, recordString) {
 }
 function parseDD(recordDD, recordString) {
     recordDD.sequenceNumber = recordString.slice(21, 22).trim();
-    recordDD.acres =
-        recordString.slice(22, 26).trim() + '.' + recordString.slice(26, 28).trim();
+    recordDD.acres = `${recordString.slice(22, 26).trim()}.${recordString.slice(26, 28).trim()}`;
     recordDD.texture = recordString.slice(28, 29).trim();
     recordDD.soilClass = recordString.slice(29, 30).trim();
     recordDD.tiling = recordString.slice(30, 31).trim();
     recordDD.climaticZone = recordString.slice(31, 32).trim();
-    recordDD.woodedAcreage =
-        recordString.slice(32, 36).trim() + '.' + recordString.slice(36, 38).trim();
-    recordDD.orchardAcreage =
-        recordString.slice(43, 47).trim() + '.' + recordString.slice(47, 49).trim();
+    recordDD.woodedAcreage = `${recordString.slice(32, 36).trim()}.${recordString.slice(36, 38).trim()}`;
+    // filler 38, 43
+    recordDD.orchardAcreage = `${recordString.slice(43, 47).trim()}.${recordString.slice(47, 49).trim()}`;
 }
 function parseGG(recordGG, recordString) {
+    // filler 21, 22
     recordGG.sequenceNumber = recordString.slice(22, 25).trim();
     recordGG.name = recordString.slice(25, 53).trim();
     recordGG.identifier = recordString.slice(53, 54).trim();
@@ -77,6 +75,7 @@ function parseGG(recordGG, recordString) {
     recordGG.designatedRatepayerCode = recordString.slice(59, 60).trim();
     recordGG.yearOfBirth = recordString.slice(60, 64).trim();
     recordGG.monthOfBirth = recordString.slice(64, 66).trim();
+    // filler 66, 68
     recordGG.frenchLanguageEducationRights = recordString.slice(68, 69).trim();
 }
 function parseHH(recordHH, recordString) {
@@ -108,10 +107,12 @@ function parsePA(recordPA, recordString) {
     recordPA.unitClass = recordString.slice(32, 35).trim();
     recordPA.realtyTaxClass = recordString.slice(35, 36).trim();
     recordPA.realtyTaxQualifier = recordString.slice(36, 37).trim();
+    // filler 37, 54
     recordPA.tenantTaxLiability = recordString.slice(54, 55).trim();
     recordPA.noticeIssued = recordString.slice(55, 56).trim();
     recordPA.previousYearAssessment = recordString.slice(56, 66).trim();
     recordPA.unitSupport = recordString.slice(66, 67).trim();
+    // filler 67, 68
     recordPA.pooledTaxesUnit = recordString.slice(68, 69).trim();
     recordPA.partnershipCode = recordString.slice(69, 70).trim();
     recordPA.propertyType = recordString.slice(70, 71).trim();
@@ -206,7 +207,9 @@ export function parseYetfRecordString(recordString) {
             parsePI(record, recordString);
             break;
         }
+        // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
         default: {
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
             throw new Error(`Unknown recordType = ${recordType}`);
         }
     }
