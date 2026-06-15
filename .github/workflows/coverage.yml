@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [ 18, 20, 22, 24 ]
+        node: [ 20, 22, 24 ]
     env:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     name: Node ${{ matrix.node }}
@@ -31,7 +31,7 @@ jobs:
         run: c8 --reporter=lcov --reporter=text --reporter=text-summary node --test
 
       - name: Codecov
-        if: ${{ github.event_name != 'pull_request' && env.CODECOV_TOKEN != '' && matrix.node == 16 }}
+        if: ${{ github.event_name != 'pull_request' && env.CODECOV_TOKEN != '' && matrix.node == 20 }}
         run: |
           curl -Os https://uploader.codecov.io/latest/linux/codecov
           chmod +x codecov
