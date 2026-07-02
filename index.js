@@ -100,6 +100,7 @@ export async function parseYetf(filePath, options) {
             }
         }
         if (options.callbacks.all !== undefined) {
+            ;
             options.callbacks.all(record, lineNumber);
         }
         if (options.callbacks[record.recordType] !== undefined) {
