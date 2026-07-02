@@ -28,3 +28,4 @@ interface ParseYetfOptions {
  */
 export declare function parseYetf(filePath: string, options: ParseYetfOptions): Promise<boolean>;
 export default parseYetf;
+export type * as types from './types.js';

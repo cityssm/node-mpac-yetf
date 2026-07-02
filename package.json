@@ -22,7 +22,8 @@
   "sideEffects": false,
   "type": "module",
   "exports": {
-    ".": "./index.js"
+    ".": "./index.js",
+    "./types": "./types.js"
   },
   "files": [
     "formatters/*",
@@ -39,7 +40,7 @@
     "@cityssm/mpac-tools": "^0.3.0"
   },
   "devDependencies": {
-    "@types/node": "^25.9.3",
+    "@types/node": "^26.1.0",
     "eslint-config-cityssm": "^41.0.0",
     "prettier-config-cityssm": "^2.1.2"
   }
